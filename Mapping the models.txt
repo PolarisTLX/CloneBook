@@ -20,7 +20,8 @@ IMPLEMENT LATER :
 MODELS:
 
 MODEL - Users:
--name
+-first_name
+-last_name
 -email
 -password_digest
 -profile_photo
