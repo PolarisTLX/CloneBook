@@ -1,0 +1,92 @@
+CloneBook Data Structures:
+
+-New Users can sign up to join the site
+-User can create multiple Posts
+
+-User can can be friends with other members
+-User can send requests to other members to be friends
+-User can have many requests to be friends from other members
+
+-Users can like other people's Posts (if they are friends)
+-Users can comment on other people's Posts (if they are friends)
+
+
+IMPLEMENT LATER :
+    #-Users can attend multiple Events
+    #-Events have have many Users attending
+
+
+
+MODELS:
+
+MODEL - Users:
+-name
+-email
+-password_digest
+-profile_photo
+
+has_many posts
+has_many likes
+has_many comments
+has_many received_requests   (foreign key: )
+has_many sent_requests       (foreign key: )
+
+#-has_many Events created
+#-has_many invites to others' Events
+
+
+MODEL - Posts:
+-content
+-User_id
+
+-belongs_to User
+-has_many comments
+-has_many likes
+
+
+MODEL - Likes:
+-User_id
+-Post_id
+
+-belongs_to User
+-belongs_to Post
+
+
+MODEL - Comments:
+-content
+-User_id
+-Post_id
+
+-belongs_to User
+-belongs_to Post
+
+
+MODEL - Requests:
+-belongs_to User_id (renamed to requester)
+-belongs_to User_id (renamed to requestee)
+-column Accepted (0/1/2 for each User)
+    0 - request has been sent
+    1 - request has been accepted, they are now friends
+    2 - request has been rejected, don't show request anymore
+
+
+
+
+IMPLEMENT LATER :
+
+MODEL - Events:
+-belongs_to one Host
+-title
+-description
+-date
+-Location
+-has_many Invites (each user)
+-has_many Users attending (maybe not)
+
+rails generate model Events name:string description:text location:string date:date user:references
+
+
+MODEL - Invites:
+-belongs_to Event_id (renamed to attended_event)
+-belongs_to User_id (renamed to attendee)
+-column Accepted (True/False for each User)
