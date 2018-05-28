@@ -1,2 +1,4 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<p>
+  <span><%= User.find(@post.user_id).first_name %></span>
+  <%= @post.content %>
+</p>

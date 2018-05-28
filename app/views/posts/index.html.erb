@@ -1,8 +1,25 @@
+<%= form_for(@post) do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit "Post" %>
+<% end %>
+
+<% if flash[:post_success] %>
+  <div><%= flash[:post_success] %></div>
+<% end %>
+
 <h1>Timeline</h1>
 
 <% @posts.each do |post| %>
-  <p>
-    <span><%= User.find(post.user_id).first_name %></span>
-    <%= post.content %>
-  </p>
+  <div class="post">
+    <p>
+      <%= User.find(post.user_id).first_name %>
+      <%= distance_of_time_in_words(Time.now, post.created_at) %> ago
+      <% if current_user.id == post.user_id %>
+        <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
+      <% end %>
+    </p>
+    <p>
+      <%= post.content %>
+    </p>
+  </div>
 <% end %>
