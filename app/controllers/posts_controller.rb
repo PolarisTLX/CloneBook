@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
+    @comment = Comment.new
   end
 
   def create
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def destroy

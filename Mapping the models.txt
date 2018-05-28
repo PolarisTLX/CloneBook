@@ -45,6 +45,7 @@ MODEL - Posts:
 -belongs_to User
 -has_many comments
 -has_many likes
+-has_attached_file (image)
 
 
 MODEL - Likes:

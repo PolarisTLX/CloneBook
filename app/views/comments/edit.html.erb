@@ -1,0 +1,14 @@
+<h2> Edit your comment on: </h2>
+<p>
+  <span><%= User.find(@comment.post.user_id).first_name %></span>
+  <%= @comment.post.content %><br/>
+  <% if @comment.post.image.exists? %>
+    <%= image_tag @comment.post.image.url(:medium) %>
+  <% end %>
+</p>
+
+<%= form_for(@comment) do |f| %>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :post_id, value: @comment.post.id %>
+  <%= f.submit "Comment" %>
+<% end %>

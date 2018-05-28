@@ -1,5 +1,28 @@
 <p>
   <span><%= User.find(@post.user_id).first_name %></span>
   <%= @post.content %><br/>
-  <%= image_tag @post.image.url(:medium) %>
+  <% if @post.image.exists? %>
+    <%= image_tag @post.image.url(:medium) %>
+  <% end %>
+
+  <% if @post.comments.count > 0 %>
+    <% @post.comments.each do |comment| %>
+      <% user = User.find(comment.user_id) %>
+      <p>
+        <strong><%= user.first_name %> <%= user.last_name %></strong> <%= comment.content %>
+        <% if current_user.id == comment.user_id %>
+          <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>
+          <span> <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= form_for(@comment) do |c| %>
+    <%= c.text_area :content %>
+    <%= c.submit "Comment" %>
+    <%= c.hidden_field :post_id, value: @post.id %>
+  <% end %>
+
+
 </p>

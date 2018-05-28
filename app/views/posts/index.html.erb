@@ -14,8 +14,8 @@
 <% @posts.each do |post| %>
   <div class="post">
     <p>
-      <%= User.find(post.user_id).first_name %>
-      <%= distance_of_time_in_words(Time.now, post.created_at) %> ago
+      <strong><%= User.find(post.user_id).first_name %></strong>
+      <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
       <% if current_user.id == post.user_id %>
         <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
         <span> <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %> </span>
@@ -27,5 +27,25 @@
         <%= image_tag post.image.url(:medium) %><br/>
       <% end %>
     </p>
+
+    <% if post.comments.count > 0 %>
+      <% post.comments.each do |comment| %>
+        <% user = User.find(comment.user_id) %>
+        <p>
+          <strong><%= user.first_name %> <%= user.last_name %></strong> <%= comment.content %>
+          <% if current_user.id == comment.user_id %>
+            <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>
+            <span> <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+          <% end %>
+        </p>
+
+      <% end %>
+    <% end %>
+
+    <%= form_for(@comment) do |f| %>
+      <%= f.text_area :content %>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <%= f.submit "Comment" %>
+    <% end %>
   </div>
 <% end %>
