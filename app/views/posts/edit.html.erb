@@ -1,5 +1,12 @@
 <h1>Edit your post</h1>
-<%= form_for(@post) do |f| %>
-  <%= f.text_area :content %>
+<%= form_for(@post, html: {multipart: true}) do |f| %>
+  <%= f.text_area :content %><br/>
+  <% if @post.image.exists? %>
+    <%= image_tag @post.image.url(:medium) %><br/>
+    <%= f.label :image, "Replace with a new Image" %><br/>
+  <% else %>
+    <%= f.label :image, "Attach an Image" %><br/>
+  <% end %>
+  <%= f.file_field :image %><br/>
   <%= f.submit "Post" %>
 <% end %>

@@ -10,6 +10,9 @@ gem 'rails', '~> 5.2.0'
 # Use postgres as the database for Active Record
 gem 'pg'
 
+# paperclip to attach files and images
+gem 'paperclip'
+
 gem 'devise'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

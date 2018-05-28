@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(user_id: current_user.id, content: params[:post][:content])
+    @post = current_user.posts.build(post_params)
     if @post.save
       flash[:post_success] = 'Post successful!'
       redirect_to root_url
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(content: params[:post][:content])
+    if @post.update_attributes(post_params)
       flash[:success] = "Post updated!"
       redirect_to @post
     else
@@ -32,5 +32,18 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.delete
+    flash[:success] = "Post successfully deleted."
+    redirect_to root_url
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:content, :image)
   end
 end

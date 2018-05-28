@@ -1,5 +1,7 @@
-<%= form_for(@post) do |f| %>
-  <%= f.text_area :content %>
+<%= form_for(@post, html: {multipart: true}) do |f| %>
+  <%= f.text_area :content %><br/>
+  <%= f.label :image, "Attach an Image" %><br/>
+  <%= f.file_field :image %><br/>
   <%= f.submit "Post" %>
 <% end %>
 
@@ -16,10 +18,14 @@
       <%= distance_of_time_in_words(Time.now, post.created_at) %> ago
       <% if current_user.id == post.user_id %>
         <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
+        <span> <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %> </span>
       <% end %>
     </p>
     <p>
-      <%= post.content %>
+      <%= post.content %><br/>
+      <% if post.image.exists? %>
+        <%= image_tag post.image.url(:medium) %><br/>
+      <% end %>
     </p>
   </div>
 <% end %>
