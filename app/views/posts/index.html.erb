@@ -28,6 +28,22 @@
       <% end %>
     </p>
 
+    <% like = post.likes.where("user_id = ?", current_user.id) %>
+    <% if like.empty? %>
+      <%= link_to "Like", likes_path(like: {post_id: post.id} ), method: :post %>
+    <% else %>
+      <%= link_to "Unlike", like.first, method: :delete %>
+    <% end %>
+
+    <% if post.likes.count > 0 %>
+      <% post.likes.each do |like| %>
+      <% user = User.find(like.user_id) %>
+      <p>
+        <strong><%= "#{user.first_name} #{user.last_name}" %></strong>
+      </p>
+      <% end %>
+    <% end %>
+
     <% if post.comments.count > 0 %>
       <% post.comments.each do |comment| %>
         <% user = User.find(comment.user_id) %>
