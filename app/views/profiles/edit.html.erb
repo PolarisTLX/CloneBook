@@ -1,0 +1,48 @@
+<h1 class="title">Edit your Clonebook Profile</h1>
+
+<div class="signup-form">
+  <% if @profile.errors.any? %>
+    <div id="user-error-explanation">
+      <h2><%= pluralize(@profile.errors.count, "error")%>
+        prevented your changes from being saved:</h2>
+
+        <ul>
+          <% @profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <%= form_for @profile do |f| %>
+
+      <% if @profile.avatar.exists? %>
+        <%= image_tag @profile.avatar.url(:medium) %><br/>
+        <%= f.label :avatar, "Replace with a new Image" %><br/>
+      <% else %>
+        <%= f.label :avatar, "Change Your Profile Image" %><br/>
+      <% end %>
+      <%= f.file_field :avatar %>
+      <br/>
+
+      <%= f.label :birthday, "Birthday" %>
+      <%= f.date_field :birthday, autocomplete: "off" %>
+      <br/>
+
+      <%= f.label :gender, "Gender" %>
+      <%= f.text_field :gender, autocomplete: "off" %>
+      <br/>
+
+      <%= f.label :location, "City" %>
+      <%= f.text_field :location %>
+      <br/>
+
+      <%= f.label :bio, "About Me" %>
+      <%= f.text_area :bio %>
+      <br/><br/>
+
+      <%= f.submit "Submit" %>
+      <br/>
+
+  <% end %>
+</div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'profiles/show'
+  # get 'profiles/edit'
   get 'users/show'
   get 'users/index'
   devise_for :users
@@ -10,4 +12,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments, only: [:create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
+
+  resources :profiles, only: [:show, :edit, :update]
 end

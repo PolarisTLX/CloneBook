@@ -26,7 +26,6 @@ MODEL - Users:
 -last_name
 -email
 -password_digest
--profile_photo
 
 has_many posts
 has_many likes
@@ -36,6 +35,15 @@ has_many sent_requests       (foreign key: )
 
 #-has_many Events created
 #-has_many invites to others' Events
+
+
+MODEL - Profile:
+-belongs_to User
+-avatar-photo
+-birthday
+-Location
+-gender
+-bio/about-me section
 
 
 MODEL - Posts:

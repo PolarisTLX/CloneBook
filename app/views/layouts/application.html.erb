@@ -14,7 +14,10 @@
     <ul style="list-style: none;">
       <% if user_signed_in? %>
         <li>
-          <%= link_to 'Home', root_url %>
+          <%= link_to 'My Profile', current_user.profile %>
+        </li>
+        <li>
+          <%= link_to 'Timeline', root_url %>
         </li>
         <li>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
@@ -46,8 +49,8 @@
   <script type="text/javascript">
   // to replicate focun on each specific respective comment field when clicking on their respective above comment button:
 
-    const commentButton = document.querySelectorAll('.comment-button');
-    const commentField = document.querySelectorAll('.comment-field');
+    let commentButton = document.querySelectorAll('.comment-button');
+    let commentField = document.querySelectorAll('.comment-field');
 
     commentButton.forEach(event => event.addEventListener('click', focus_function));
 

@@ -1,0 +1,40 @@
+<div class="user-info">
+  <h2>User Info:</h2>
+  <% if @profile.avatar.exists? %>
+    <%= image_tag @profile.avatar.url(:medium) %>
+  <% end %>
+  <p>
+    <strong>Name:</strong>
+    <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+
+    <br/>
+
+    <strong>Email:</strong>
+    <%= @profile.user.email %>
+
+    <br/>
+
+    <strong>Date of Birth:</strong>
+    <%= @profile.birthday %>
+
+    <br/>
+
+    <strong>Gender:</strong>
+    <%= @profile.gender %>
+
+    <br/>
+
+    <strong>City:</strong>
+    <%= @profile.location %>
+
+    <br/>
+
+    <strong>About Me:</strong>
+    <%= @profile.bio %>
+  </p>
+
+
+  <% if @profile.user == current_user %>
+    <%= link_to "Edit Your Profile", edit_profile_path(current_user.profile)%>
+  <% end %>
+</div>

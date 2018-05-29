@@ -17,7 +17,7 @@ users = User.all
 # 5 posts for each user:
 3.times do
   # content = Faker::Lorem.sentence(5)
-  users.each { |user| user.posts.create!(content: Faker::Lorem.sentence(5)) }
+  users.each { |user| user.posts.create(content: Faker::Lorem.sentence(5)) }
 end
 
 # each post have random number of comments (between 0 - 4)
@@ -26,7 +26,16 @@ posts.each do |post|
   rand(0..4).times do
     # content = Faker::Lorem.sentences
     # assign random user id from 1-5 (there is no 0)
-    post.comments.create!(user_id: rand(1..5), content: Faker::Lorem.sentence)
+    post.comments.create(user_id: rand(1..5), content: Faker::Lorem.sentence)
+  end
+end
+
+posts = Post.all
+posts.each do |post|
+  rand(0..4).times do
+    # content = Faker::Lorem.sentences
+    # assign random user id from 1-5 (there is no 0)
+    post.likes.create(user_id: rand(1..5))
   end
 end
 

@@ -14,7 +14,12 @@
 <% @posts.each do |post| %>
   <div class="post">
     <p>
-      <strong><%= User.find(post.user_id).first_name %></strong>
+      <span>
+        <% if post.user.profile.avatar.exists? %>
+          <%= image_tag post.user.profile.avatar.url(:tac) %>
+        <% end %>
+        <%= link_to "#{post.user.first_name}", post.user.profile %>
+      </span>
       <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
       <% if current_user.id == post.user_id %>
         <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
@@ -34,7 +39,7 @@
     <% else %>
       <%= link_to "Unlike", like.first, method: :delete %>
     <% end %>
-    <p class="comment-button">Comment</p>
+    <span class="comment-button">Comment</span>
 
     <% if post.likes.count > 0 %>
 
@@ -44,7 +49,7 @@
         <% when 1 %>
             <% user = User.find(post.likes.first.user_id) %>
             <strong>
-              <%= "#{user.first_name} #{user.last_name}" %>
+              <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
             </strong>
         <% when 2 %>
 
@@ -52,9 +57,9 @@
             <% user = User.find(like.user_id) %>
             <strong>
               <% unless index == post.likes.count - 1 %>
-                <%= "#{user.first_name} #{user.last_name}, " %>
+                <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
               <% else %>
-                <%= "#{user.first_name} #{user.last_name}" %>
+                <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
               <% end %>
             </strong>
 
@@ -64,8 +69,8 @@
           <% user1 = User.find(post.likes.first.user_id) %>
           <% user2 = User.find(post.likes.second.user_id) %>
           <strong>
-              <%= "#{user1.first_name} #{user1.last_name}, " %>
-              <%= "#{user2.first_name} #{user2.last_name} " %>
+            <%= link_to "#{user1.first_name} #{user1.last_name}", user1.profile %>
+            <%= link_to "#{user2.first_name} #{user2.last_name}", user2.profile %>
               <%= "and " + pluralize(post.likes.count - 2, "other") %>
           </strong>
         <% end %>
@@ -78,7 +83,10 @@
       <% post.comments.each do |comment| %>
         <% user = User.find(comment.user_id) %>
         <p>
-          <strong><%= user.first_name %> <%= user.last_name %></strong> <%= comment.content %>
+          <% if user.profile.avatar.exists? %>
+            <%= image_tag user.profile.avatar.url(:tac) %>
+          <% end %>
+          <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
           <% if current_user.id == comment.user_id %>
             <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>
             <span> <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %> </span>
