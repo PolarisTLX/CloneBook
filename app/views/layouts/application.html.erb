@@ -40,4 +40,29 @@
 
     <%= yield %>
   </body>
+
+
+
+  <script type="text/javascript">
+  // to replicate focun on each specific respective comment field when clicking on their respective above comment button:
+
+    const commentButton = document.querySelectorAll('.comment-button');
+    const commentField = document.querySelectorAll('.comment-field');
+
+    commentButton.forEach(event => event.addEventListener('click', focus_function));
+
+    function focus_function() {
+       let index = Array.from(commentButton).indexOf(this);
+       // console.log(index);
+       // if (this.style.color == 'red') {
+       //   this.style.color = 'black';
+       // } else {
+       //   this.style.color = 'red';
+       // }
+       commentField[index].focus();
+    }
+
+  </script>
+
+
 </html>

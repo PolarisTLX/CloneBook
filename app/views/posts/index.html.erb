@@ -9,7 +9,7 @@
   <div><%= flash[:post_success] %></div>
 <% end %>
 
-<h1>Timeline</h1>
+<h1 id="timeline">Timeline</h1>
 
 <% @posts.each do |post| %>
   <div class="post">
@@ -34,6 +34,7 @@
     <% else %>
       <%= link_to "Unlike", like.first, method: :delete %>
     <% end %>
+    <p class="comment-button">Comment</p>
 
     <% if post.likes.count > 0 %>
 
@@ -88,7 +89,7 @@
     <% end %>
 
     <%= form_for(@comment) do |f| %>
-      <%= f.text_area :content %>
+      <%= f.text_area :content, class: "comment-field" %>
       <%= f.hidden_field :post_id, value: post.id %>
       <%= f.submit "Comment" %>
     <% end %>
