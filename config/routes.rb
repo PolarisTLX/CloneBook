@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'posts/index'
   get 'posts/show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: 'posts#index'
 
   resources :posts
@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
 
   resources :profiles, only: [:show, :edit, :update]
+
+  #devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 end

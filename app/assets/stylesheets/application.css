@@ -17,3 +17,12 @@
 .post{
   border: 1px solid blue;
 }
+
+.like-comment-buttons{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+.liked-by{
+  border-bottom: 1px solid lightgrey;
+}

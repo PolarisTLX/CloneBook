@@ -12,17 +12,19 @@
 
   <br/>
 
-  <% like = @post.likes.where("user_id = ?", current_user.id) %>
-  <% if like.empty? %>
-    <%= link_to "Like", likes_path(like: {post_id: @post.id} ), method: :post %>
-  <% else %>
-    <%= link_to "Unlike", like.first, method: :delete %>
-  <% end %>
-  <span class="comment-button">Comment</span>
+  <p class="like-comment-buttons">
+    <% like = @post.likes.where("user_id = ?", current_user.id) %>
+    <% if like.empty? %>
+      <%= link_to "Like", likes_path(like: {post_id: @post.id} ), method: :post %>
+    <% else %>
+      <%= link_to "Unlike", like.first, method: :delete %>
+    <% end %>
+    <span class="comment-button">Comment</span>
+  </p>
 
   <% if @post.likes.count > 0 %>
 
-    <p>
+    <p class="liked-by">
         Liked by:
       <% case @post.likes.count %>
       <% when 1 %>

@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Faker to create database seeds
 gem 'faker'
 
+# Log in with Facebook
+gem 'omniauth-facebook'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
