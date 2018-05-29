@@ -36,12 +36,41 @@
     <% end %>
 
     <% if post.likes.count > 0 %>
-      <% post.likes.each do |like| %>
-      <% user = User.find(like.user_id) %>
+
       <p>
-        <strong><%= "#{user.first_name} #{user.last_name}" %></strong>
+          Liked by:
+        <% case post.likes.count %>
+        <% when 1 %>
+            <% user = User.find(post.likes.first.user_id) %>
+            <strong>
+              <%= "#{user.first_name} #{user.last_name}" %>
+            </strong>
+        <% when 2 %>
+
+          <% post.likes.each_with_index do |like, index| %>
+            <% user = User.find(like.user_id) %>
+            <strong>
+              <% unless index == post.likes.count - 1 %>
+                <%= "#{user.first_name} #{user.last_name}, " %>
+              <% else %>
+                <%= "#{user.first_name} #{user.last_name}" %>
+              <% end %>
+            </strong>
+
+          <% end %>
+
+        <% else %>
+          <% user1 = User.find(post.likes.first.user_id) %>
+          <% user2 = User.find(post.likes.second.user_id) %>
+          <strong>
+              <%= "#{user1.first_name} #{user1.last_name}, " %>
+              <%= "#{user2.first_name} #{user2.last_name} " %>
+              <%= "and " + pluralize(post.likes.count - 2, "other") %>
+          </strong>
+        <% end %>
+
       </p>
-      <% end %>
+
     <% end %>
 
     <% if post.comments.count > 0 %>

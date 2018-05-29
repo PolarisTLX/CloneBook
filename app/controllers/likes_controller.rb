@@ -3,8 +3,8 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.build(like_params)
     if @like.save
-      flash[:success] = 'You liked this post!'
-      redirect_to Post.find(@like.post_id)
+      # flash[:success] = 'You liked this post!'
+      redirect_to root_url
     else
       flash[:danger] = 'Like did not work'
       redirect_to root_url

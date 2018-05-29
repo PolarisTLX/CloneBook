@@ -18,6 +18,7 @@
         </li>
         <li>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+          <%= current_user.first_name %>
         </li>
         <li>
           <%= link_to 'Edit Account', edit_user_registration_path(current_user) %>
