@@ -2,6 +2,8 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @posts = @profile.user.posts
+    @comment = Comment.new
   end
 
   def edit

@@ -35,8 +35,112 @@
     <%= @profile.bio %>
   </p>
 
-
   <% if @profile.user == current_user %>
     <%= link_to "Edit Your Profile", edit_profile_path(current_user.profile)%>
+  <% end %>
+
+</div>
+
+<div class="user-posts">
+  <% if @posts.count > 0 %>
+    <h2><%= @profile.user.first_name %>'s posts:</h2>
+    <% @posts.each do |post| %>
+      <div class="post">
+        <p>
+          <span>
+            <% if post.user.profile.avatar.exists? %>
+              <%= image_tag post.user.profile.avatar.url(:tac) %>
+            <% elsif post.user.profile.user.image %>
+              <%= image_tag post.user.profile.user.image %>
+            <% end %>
+            <%= link_to "#{post.user.first_name}", post.user.profile %>
+          </span>
+          <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
+          <% if current_user.id == post.user_id %>
+            <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
+            <span> <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+          <% end %>
+        </p>
+        <p>
+          <%= post.content %><br/>
+          <% if post.image.exists? %>
+            <%= image_tag post.image.url(:medium) %><br/>
+          <% end %>
+        </p>
+
+        <p class="like-comment-buttons">
+          <% like = post.likes.where("user_id = ?", current_user.id) %>
+          <% if like.empty? %>
+            <%= link_to "Like", likes_path(like: {post_id: post.id} ), method: :post %>
+          <% else %>
+            <%= link_to "Unlike", like.first, method: :delete %>
+          <% end %>
+          <span class="comment-button">Comment</span>
+        </p>
+
+        <% if post.likes.count > 0 %>
+
+          <p class="liked-by">
+              Liked by:
+            <% case post.likes.count %>
+            <% when 1 %>
+                <% user = User.find(post.likes.first.user_id) %>
+                <strong>
+                  <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                </strong>
+            <% when 2 %>
+
+              <% post.likes.each_with_index do |like, index| %>
+                <% user = User.find(like.user_id) %>
+                <strong>
+                  <% unless index == post.likes.count - 1 %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                  <% else %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                  <% end %>
+                </strong>
+
+              <% end %>
+
+            <% else %>
+              <% user1 = User.find(post.likes.first.user_id) %>
+              <% user2 = User.find(post.likes.second.user_id) %>
+              <strong>
+                <%= link_to "#{user1.first_name} #{user1.last_name}", user1.profile %>
+                <%= link_to "#{user2.first_name} #{user2.last_name}", user2.profile %>
+                  <%= "and " + pluralize(post.likes.count - 2, "other") %>
+              </strong>
+            <% end %>
+
+          </p>
+
+        <% end %>
+
+        <% if post.comments.count > 0 %>
+          <% post.comments.each do |comment| %>
+            <% user = User.find(comment.user_id) %>
+            <p>
+              <% if user.profile.avatar.exists? %>
+                <%= image_tag user.profile.avatar.url(:tac) %>
+              <% elsif user.profile.user.image %>
+                <%= image_tag user.profile.user.image %>
+              <% end %>
+              <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
+              <% if current_user.id == comment.user_id %>
+                <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>
+                <span> <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+              <% end %>
+            </p>
+
+          <% end %>
+        <% end %>
+
+        <%= form_for(@comment) do |f| %>
+          <%= f.text_area :content, class: "comment-field" %>
+          <%= f.hidden_field :post_id, value: post.id %>
+          <%= f.submit "Comment" %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
