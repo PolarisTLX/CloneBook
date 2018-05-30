@@ -260,6 +260,7 @@ Devise.setup do |config|
   # config.omniauth :twitter, ENV['WIyM5GcD29UwdsHGZUfSSEiLb'], ENV['	aOeqiPK5poiJIHuwJgqi7PibezeRhH5A61bCkwcrhuuBoG6e5D']
   # config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
   config.omniauth :facebook, "900130893500383", "cc5a823b98eeaab27ab25f1a225fb86a", callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :github, "cabdca35103cc5801d9c", "0527385d8d93fc9f42be681b5f64702d613c300f", :scope => 'user:email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

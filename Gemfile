@@ -19,6 +19,7 @@ gem 'devise'
 # gem 'omniauth'
 # gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
