@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   # get 'profiles/edit'
   get 'users/show'
   get 'users/index'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get 'posts/index'
   get 'posts/show'
+  get '/auth/:provider/callback', to: 'sessions#create'
 
   root to: 'posts#index'
 
