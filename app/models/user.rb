@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :likes
+  has_many :sent_requests, foreign_key: :requester_id, class_name: 'Request'
+  has_many :received_requests, foreign_key: :requestee_id, class_name: 'Request'
+  has_many :requestees, through: :sent_requests
+  has_many :requesters, through: :received_requests
 
   after_create :make_profile
 

@@ -1,2 +1,7 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>All Users</h1>
+<% @users.each do |user| %>
+  <p>
+    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+    <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
+  </p>
+<% end %>
