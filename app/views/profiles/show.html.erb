@@ -1,7 +1,9 @@
 <div class="user-info">
   <h2>User Info:</h2>
   <% if @profile.avatar.exists? %>
-    <%= image_tag @profile.avatar.url(:medium) %>
+    <%= image_tag @profile.avatar.url(:tac) %>
+  <% elsif @profile.user.image %>
+    <%= image_tag @profile.user.image %>
   <% end %>
   <p>
     <strong>Name:</strong>

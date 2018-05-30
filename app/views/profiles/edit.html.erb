@@ -16,12 +16,12 @@
 
   <%= form_for @profile do |f| %>
 
-      <% if @profile.avatar.exists? %>
-        <%= image_tag @profile.avatar.url(:medium) %><br/>
-        <%= f.label :avatar, "Replace with a new Image" %><br/>
-      <% else %>
-        <%= f.label :avatar, "Change Your Profile Image" %><br/>
+      <% if  @profile.avatar.exists? %>
+        <%= image_tag  @profile.avatar.url(:tac) %>
+      <% elsif  @profile.user.image %>
+        <%= image_tag  @profile.user.image %>
       <% end %>
+      <%= f.label :avatar, "Change Your Profile Image" %><br/>
       <%= f.file_field :avatar %>
       <br/>
 
