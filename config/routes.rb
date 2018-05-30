@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get 'profiles/edit'
   get 'users/show'
   get 'users/index'
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users
   get 'posts/index'
   get 'posts/show'
 
@@ -15,5 +15,4 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:show, :edit, :update]
 
-  #devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 end
