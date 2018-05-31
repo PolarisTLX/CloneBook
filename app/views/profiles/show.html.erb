@@ -1,11 +1,7 @@
 <div class="profiles-show">
 <div class="user-info">
   <h2>User Info:</h2>
-  <% if @profile.avatar.exists? %>
-    <%= image_tag @profile.avatar.url(:tac) %>
-  <% elsif @profile.user.image %>
-    <%= image_tag @profile.user.image %>
-  <% end %>
+  <%= image_tag @profile.avatar.url(:tac), size: '20x20' %>
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
@@ -56,7 +52,7 @@
     <h2><%= @profile.user.first_name %>'s friends:</h2>
     <% @profile.user.friends.first(2).each do |friend| %>
       <p>
-        <%= image_tag friend.profile.avatar(:tac) %><br/>
+        <%= image_tag friend.profile.avatar(:tac), size: '20x20' %><br/>
         <%= friend.first_name %>
       </p>
     <% end %>
@@ -70,11 +66,7 @@
       <div class="post">
         <p>
           <span>
-            <% if post.user.profile.avatar.exists? %>
-              <%= image_tag post.user.profile.avatar.url(:tac) %>
-            <% elsif post.user.profile.user.image %>
-              <%= image_tag post.user.profile.user.image %>
-            <% end %>
+            <%= image_tag post.user.profile.avatar.url(:tac), size: '20x20' %>
             <%= link_to "#{post.user.first_name}", post.user.profile %>
           </span>
           <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
@@ -142,11 +134,7 @@
           <% post.comments.each do |comment| %>
             <% user = User.find(comment.user_id) %>
             <p>
-              <% if user.profile.avatar.exists? %>
-                <%= image_tag user.profile.avatar.url(:tac) %>
-              <% elsif user.profile.user.image %>
-                <%= image_tag user.profile.user.image %>
-              <% end %>
+              <%= image_tag user.profile.avatar.url(:tac), size: '20x20' %>
               <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
               <% if current_user.id == comment.user_id %>
                 <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>

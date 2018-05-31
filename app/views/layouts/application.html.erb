@@ -20,8 +20,8 @@
             </li>
             <li class="navbar-tac">
 
-                  <%= image_tag current_user.profile.avatar.url(:tac), class: "tac-image" %>
-    
+                  <%= image_tag current_user.profile.avatar.url(:tac), class: "tac-image", size: '20x20' %>
+
             </li>
             <li class="link-user-name">
               <%= link_to "#{current_user.first_name}", current_user.profile %>

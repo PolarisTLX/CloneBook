@@ -17,11 +17,7 @@
 
   <%= form_for @profile do |f| %>
 
-      <% if  @profile.avatar.exists? %>
-        <%= image_tag  @profile.avatar.url(:tac) %>
-      <% elsif  @profile.user.image %>
-        <%= image_tag  @profile.user.image %>
-      <% end %>
+      <%= image_tag  @profile.avatar.url(:tac), size: '20x20' %>
       <%= f.label :avatar, "Change Your Profile Image" %><br/>
       <%= f.file_field :avatar %>
       <br/>
