@@ -1,16 +1,24 @@
 <div class="posts">
-<%= form_for(@post, html: {multipart: true}) do |f| %>
-  <%= f.text_area :content %><br/>
-  <%= f.label :image, "Attach an Image" %><br/>
-  <%= f.file_field :image %><br/>
-  <%= f.submit "Post" %>
-<% end %>
+<div class = "new-post">
+  <div class="new-post-top">
+    <span>Make Post</span>
+  </div>
+  <%= form_for(@post, html: {multipart: true}) do |f| %>
+    <% if current_user.profile.avatar.exists? %>
+      <%= image_tag current_user.profile.avatar.url(:thumb) %>
+    <% elsif current_user.profile.user.image %>
+      <%= image_tag current_user.profile.user.image %>
+    <% end %>
+    <%= f.text_area :content, rows: "3", placeholder: "What's on your mind, #{current_user.first_name}?" %><br/>
+    <%= f.label :image, "Attach an Image" %><br/>
+    <%= f.file_field :image %><br/>
+    <%= f.submit "Post" %>
+  <% end %>
 
-<% if flash[:post_success] %>
-  <div><%= flash[:post_success] %></div>
-<% end %>
-
-<h1 id="timeline">Timeline</h1>
+  <% if flash[:post_success] %>
+    <div><%= flash[:post_success] %></div>
+  <% end %>
+</div>
 
 <% @posts.each do |post| %>
   <div class="post">
@@ -104,7 +112,7 @@
     <% end %>
 
     <%= form_for(@comment) do |f| %>
-      <%= f.text_area :content, class: "comment-field" %>
+      <%= f.text_area :content, class: "comment-field", placeholder: "Type your comment here"  %>
       <%= f.hidden_field :post_id, value: post.id %>
       <%= f.submit "Comment" %>
     <% end %>
