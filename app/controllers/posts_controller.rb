@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.where('user_id in (?)', current_user.friend_ids) |
+             Post.where('user_id = ?', current_user.id)
     @comment = Comment.new
   end
 

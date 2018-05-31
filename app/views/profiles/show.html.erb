@@ -50,6 +50,18 @@
 
 </div>
 
+<div class="friends">
+  <% if @profile.user.friends.count > 0 %>
+    <h2><%= @profile.user.first_name %>'s friends:</h2>
+    <% @profile.user.friends.first(2).each do |friend| %>
+      <p>
+        <%= image_tag friend.profile.avatar(:tac) %><br/>
+        <%= friend.first_name %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
 <div class="user-posts">
   <% if @posts.count > 0 %>
     <h2><%= @profile.user.first_name %>'s posts:</h2>

@@ -16,6 +16,19 @@ class User < ApplicationRecord
   after_create :make_profile
 
 
+  def friends
+     @friends = self.requesters.where('requests.accepted = ?', 1) |
+                self.requestees.where('requests.accepted = ?', 1)
+     @friends.sort do |a, b|
+        a.created_at <=> b.created_at
+     end
+  end
+
+  def friend_ids
+    @friend_ids = self.requesters.where('requests.accepted = ?', 1).select(:id) |
+               self.requestees.where('requests.accepted = ?', 1).select(:id)
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
