@@ -8,6 +8,14 @@
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+    
+    <% unless current_user == @profile.user %>
+      <% if current_user.requesters.where('requests.accepted = ?', 0).include?(@profile.user) %>
+        <%= link_to "Accept Friend Request", requests_path(request: { requestee_id: @profile.user.id }), method: :put %>
+      <% elsif !current_user.requestees.include?(@profile.user) %>
+        <%= link_to "Add Friend", requests_path(request: { requestee_id: @profile.user.id }), method: :post %>
+      <% end %>
+    <% end %>
 
     <br/>
 

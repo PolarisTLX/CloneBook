@@ -1,7 +1,13 @@
 <h1>All Users</h1>
 <% @users.each do |user| %>
+  <% next if user == current_user %>
   <p>
     <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
-    <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
+
+    <% if current_user.requesters.where('requests.accepted = ?', 0).include?(user) %>
+      <%= link_to "Accept Friend Request", requests_path(request: { requestee_id: user.id }), method: :put %>
+    <% elsif !current_user.requestees.include?(user) %>
+      <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
+    <% end %>
   </p>
 <% end %>
