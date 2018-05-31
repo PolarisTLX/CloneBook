@@ -1,3 +1,4 @@
+<div class="posts-edit">
 <h1>Edit your post</h1>
 <%= form_for(@post, html: {multipart: true}) do |f| %>
   <%= f.text_area :content %><br/>
@@ -10,3 +11,4 @@
   <%= f.file_field :image %><br/>
   <%= f.submit "Post" %>
 <% end %>
+</div>

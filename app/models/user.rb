@@ -51,7 +51,8 @@ class User < ApplicationRecord
   private
 
   def make_profile
-    self.create_profile(avatar_file_name: self.image)
+    # self.create_profile(avatar_file_name: self.image)
+    self.create_profile
   end
 
 

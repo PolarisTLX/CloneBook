@@ -83,8 +83,6 @@ a:visited {
 }
 
 
-
-
 /* .yield {
   grid-row-start: 2;
 } */
@@ -96,6 +94,7 @@ textarea {
   padding: 5% 2% 0 2%;
   border: none;
   resize: none;
+  background-color: white;
 }
 
 input[type=submit] {
@@ -112,12 +111,10 @@ input[type=submit] {
 }
 
 
-.posts {
-  /* border: 1px solid blue; */
-  /* grid-row-start: 2;
-  grid-column-start: 2: */
+.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .requests-index, .users-index, .users-show, .registrations-edit, .registrations-new, .sessions-new {
   grid-area: 2 / 2 / 3 / 3;
 }
+
 
 
 .new-post img {

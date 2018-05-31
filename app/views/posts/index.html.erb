@@ -4,11 +4,9 @@
     <span>Make Post</span>
   </div>
   <%= form_for(@post, html: {multipart: true}) do |f| %>
-    <% if current_user.profile.avatar.exists? %>
+
       <%= image_tag current_user.profile.avatar.url(:thumb) %>
-    <% elsif current_user.profile.user.image %>
-      <%= image_tag current_user.profile.user.image %>
-    <% end %>
+
     <%= f.text_area :content, rows: "3", placeholder: "What's on your mind, #{current_user.first_name}?" %><br/>
     <%= f.label :image, "Attach an Image" %><br/>
     <%= f.file_field :image %><br/>
