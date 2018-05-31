@@ -1,3 +1,4 @@
+<div class="posts">
 <%= form_for(@post, html: {multipart: true}) do |f| %>
   <%= f.text_area :content %><br/>
   <%= f.label :image, "Attach an Image" %><br/>
@@ -109,3 +110,4 @@
     <% end %>
   </div>
 <% end %>
+</div>

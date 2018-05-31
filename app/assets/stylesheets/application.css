@@ -14,8 +14,88 @@
  *= require_self
  */
 
-.post{
+ body {
+   margin: 0;
+   display: grid;
+   grid-template-columns: 22% 33% 25% 20%;
+   grid-template-rows: 5vw auto;
+   font-family: 'Roboto', sans-serif;
+   background-color: rgb(233,235,238);
+ }
+
+
+.navbar {
+  display: inline;
+  position: fixed;
+  padding-bottom: 1vw;
+  /* margin-bottom: 4vh; */
+  height: 4vh;
+  background-color: rgb(66,103,178);
+  margin: 0;
+  color: rgb(255,255,255);
+  width: 100%;
+}
+
+.navbar ul {
+  /* margin-bottom: 1vw; */
+  transform: translateY(-1.0vw);
+}
+.navbar li {
+  display: inline;
+  font-size: 1vw;
+  font-weight: bold;
+  margin-right: 2vw;
+}
+/* .navbar li:not(.navbar-tac) {
+  transform: translateY(-0.7vw);
+} */
+.navbar-tac {
+  margin-right: 0.2vw !important;
+}
+
+a {
+  text-decoration: none;
+  color:inherit;
+}
+a:visited {
+  color:inherit;
+}
+
+.link-all-users {
+  margin-left: 5vw;
+  margin-right: 40vw !important;
+}
+.tac-image {
+  border-radius: 50%;
+  transform: translateY(0.5vw);
+}
+.link-user-name {
+
+}
+.link-home {
+
+}
+.link-edit {
+
+}
+.link-signout {
+
+}
+
+
+
+
+/* .yield {
+  grid-row-start: 2;
+} */
+
+
+.posts {
   border: 1px solid blue;
+  /* grid-row-start: 2;
+  grid-column-start: 2: */
+
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 .like-comment-buttons{
