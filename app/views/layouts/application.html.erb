@@ -23,7 +23,7 @@
           <%= link_to 'Edit Account', edit_user_registration_path(current_user) %>
         </li>
         <li>
-          <%= link_to 'All Users', 'users/index' %>
+          <%= link_to 'All Users', users_index_path %>
         </li>
         <li>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
@@ -32,7 +32,7 @@
 
         <% if current_user.received_requests.where(accepted: 0).count > 0 %>
           <li>
-            <%= link_to "Friend Requests (#{current_user.received_requests.where(accepted: 0).count})", root_url %>
+            <%= link_to "Friend Requests (#{current_user.received_requests.where(accepted: 0).count})", requests_path %>
           </li>
         <% end %>
       <% else %>

@@ -1,0 +1,8 @@
+<h1>All Friend Requests</h1>
+<% @users.each do |user| %>
+  <p>
+    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+
+    <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put %>
+  </p>
+<% end %>
