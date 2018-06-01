@@ -16,8 +16,8 @@
     <% end %>
 
     <%= f.text_area :content, rows: "3", placeholder: "What's on your mind, #{current_user.first_name}?" %><br/>
-    <%= f.label :image, "Attach an Image" %><br/>
-    <%= f.file_field :image %><br/>
+    <%= f.label :image, fa_icon('image', type: :solid, text: "Photo", color: 'rgb(66, 103, 178)'), class: 'photo-label' %><br/>
+    <%= f.file_field :image, class: 'post-photo' %><br/>
     <%= f.submit "Post" %>
   <% end %>
 
@@ -41,7 +41,7 @@
         <%= link_to "#{post.user.first_name}", post.user.profile, class: "user-name" %>
       </span>
 
-      <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
+      <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post, class: 'timestamp' %>
       <% if current_user.id == post.user_id %>
         <span class="edit-delete-post">
           <%= link_to 'Edit Post', edit_post_path(post) %>

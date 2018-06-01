@@ -103,7 +103,9 @@ textarea {
   border: 1.5px solid rgb(233,235,238);
   border-radius: 25px;
   margin-bottom: 5px;
-  padding-top: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 11px;
 }
 
 input[type=submit] {
@@ -183,9 +185,44 @@ input[type=submit] {
   left: 2vw;
 }
 
+.post-photo {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.photo-label{
+  margin-left: 20px;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 5px 15px 7px;
+  background-color: rgb(245, 247, 248) !important;
+  border-radius: 25px;
+  display: inline-block;
+  color: rgb(90, 90, 90) !important;
+}
+
+.photo-label:hover {
+  background-color: rgb(233, 235, 238) !important;
+}
+
+.fa-image {
+  font-size: 18px !important;
+  transform: translateY(2px);
+}
+
 .post-header {
   position: relative;
 }
+
+.timestamp {
+  font-size: 10px;
+  color: rgb(90,90,90) !important;
+}
+
 .edit-delete-post {
   position: absolute;
   right: 10px;

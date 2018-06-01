@@ -89,7 +89,7 @@
 
             <%= link_to "#{post.user.first_name}", post.user.profile, class: "user-name" %>
           </span>
-          <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
+          <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post, class: 'timestamp' %>
           <% if current_user.id == post.user_id %>
           <span class="edit-delete-post">
             <%= link_to 'Edit Post', edit_post_path(post) %>
