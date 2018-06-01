@@ -3,10 +3,12 @@
 <% @users.each do |user| %>
   <% next if user == current_user %>
   <p>
-    <% if !user.profile.avatar.exists? && user.image %>
-      <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
-    <% else %>
-      <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+    <%= link_to(user.profile) do %>
+      <% if !user.profile.avatar.exists? && user.image %>
+        <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
+      <% else %>
+        <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+      <% end %>
     <% end %>
 
     <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>

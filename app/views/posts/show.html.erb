@@ -1,10 +1,12 @@
 <div class="posts-show">
 <p>
   <span>
-    <% if !@post.user.profile.avatar.exists? && @post.user.image %>
-      <%= image_tag @post.user.image, class: 'tac-image', size: '20x20' %>
-    <% else %>
-      <%= image_tag @post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+    <%= link_to(@post.user.profile) do %>
+      <% if !@post.user.profile.avatar.exists? && @post.user.image %>
+        <%= image_tag @post.user.image, class: 'tac-image', size: '20x20' %>
+      <% else %>
+        <%= image_tag @post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+      <% end %>
     <% end %>
 
     <%= link_to "#{@post.user.first_name}", @post.user.profile %>
@@ -19,9 +21,9 @@
   <br/>
 
   <p class="like-comment-buttons">
-    <% like = post.likes.where("user_id = ?", current_user.id) %>
+    <% like = @post.likes.where("user_id = ?", current_user.id) %>
     <% if like.empty? %>
-    <%= button_to likes_path(like: {post_id: post.id} ), method: :post, class: "like-button" do %>
+    <%= button_to likes_path(like: {post_id: @post.id} ), method: :post, class: "like-button" do %>
       <%= fa_icon('thumbs-up', type: :regular, text: "Like") %>
     <% end %>
     <% else %>
@@ -35,7 +37,7 @@
   <% if @post.likes.count > 0 %>
 
     <p class="liked-by">
-        Liked by:
+      <%= fa_icon('thumbs-up', type: :solid, style: 'color:rgb(66,103,178)') %>
       <% case @post.likes.count %>
       <% when 1 %>
           <% user = User.find(@post.likes.first.user_id) %>
@@ -73,24 +75,38 @@
   <% if @post.comments.count > 0 %>
     <% @post.comments.each do |comment| %>
       <% user = User.find(comment.user_id) %>
-      <p>
+      <%= link_to(user.profile) do %>
         <% if !user.profile.avatar.exists? && user.image %>
-          <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
+          <%= image_tag user.image, class: 'tac-image comment-image', size: '20x20' %>
         <% else %>
-          <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+          <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image comment-image', size: '20x20' %>
         <% end %>
+      <% end %>
 
-        <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
+      <p class="comment">
+        <span class="comment-content">
+          <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
+        </span>
         <% if current_user.id == comment.user_id %>
-          <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>
-          <span> <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+          <span class="edit-delete-comment">
+            <%= link_to 'Edit', edit_comment_path(comment) %>
+            <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %>
+          </span>
         <% end %>
       </p>
     <% end %>
   <% end %>
 
   <%= form_for(@comment) do |c| %>
-    <%= c.text_area :content %>
+    <%= link_to(current_user.profile) do %>
+      <% if !current_user.profile.avatar.exists? && current_user.image %>
+        <%= image_tag current_user.image, class: 'tac-image new-comment-image', size: '20x20' %>
+      <% else %>
+        <%= image_tag current_user.profile.avatar.url(:tac), class: 'tac-image new-comment-image', size: '20x20' %>
+      <% end %>
+    <% end %>
+
+    <%= c.text_area :content, class: "comment-field", placeholder: "Type your comment here" %>
     <%= c.submit "Comment" %>
     <%= c.hidden_field :post_id, value: @post.id %>
   <% end %>
