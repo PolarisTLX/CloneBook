@@ -1,8 +1,10 @@
 <div class="posts">
 <div class = "new-post">
+
   <div class="new-post-top">
     <span>Make Post</span>
   </div>
+
   <%= form_for(@post, html: {multipart: true}) do |f| %>
 
     <% if !current_user.profile.avatar.exists? && current_user.image %>
@@ -50,11 +52,15 @@
     <p class="like-comment-buttons">
       <% like = post.likes.where("user_id = ?", current_user.id) %>
       <% if like.empty? %>
-        <%= link_to "Like", likes_path(like: {post_id: post.id} ), method: :post %>
-      <% else %>
-        <%= link_to "Unlike", like.first, method: :delete %>
+      <%= button_to likes_path(like: {post_id: post.id} ), method: :post, class: "like-button" do %>
+        <%= fa_icon('thumbs-up', type: :regular, text: "Like") %>
       <% end %>
-      <span class="comment-button">Comment</span>
+      <% else %>
+        <%= button_to like.first, method: :delete, class: "like-button unlike" do %>
+          <%= fa_icon('thumbs-up', type: :solid, text: "Like") %>
+        <% end %>
+      <% end %>
+      <button class="comment-button"><i class="far fa-comment-alt"></i> Comment</button>
     </p>
 
     <% if post.likes.count > 0 %>

@@ -12,11 +12,14 @@
  *
  *= require_tree .
  *= require_self
+
+*= require font_awesome5
  */
 
  body {
    margin: 0;
    display: grid;
+   /* grid-template-columns: 22% 33% 25% 20%; */
    grid-template-columns: 22% 33% 25% 20%;
    grid-template-rows: 5vw auto;
    font-family: 'Roboto', sans-serif;
@@ -27,9 +30,9 @@
 .navbar {
   display: inline;
   position: fixed;
-  padding-bottom: 1vw;
+  padding-bottom: 11px;
   /* margin-bottom: 4vh; */
-  height: 4vh;
+  height: 24px;
   background-color: rgb(66,103,178);
   margin: 0;
   color: rgb(255,255,255);
@@ -38,18 +41,14 @@
 }
 
 .navbar ul {
-  /* margin-bottom: 1vw; */
-  transform: translateY(-1.0vw);
+  transform: translateY(-13px);
 }
 .navbar li {
   display: inline;
-  font-size: 1vw;
+  font-size: 11px;
   font-weight: bold;
   margin-right: 2vw;
 }
-/* .navbar li:not(.navbar-tac) {
-  transform: translateY(-0.7vw);
-} */
 .navbar-tac {
   margin-right: 0.2vw !important;
 }
@@ -63,12 +62,12 @@ a:visited {
 }
 
 .link-all-users {
-  margin-left: 5vw;
+  margin-left: 0vw;
   margin-right: 40vw !important;
 }
 .tac-image {
   border-radius: 50%;
-  transform: translateY(0.3vw);
+  transform: translateY(4px);
 }
 .link-user-name {
 
@@ -148,7 +147,7 @@ input[type=submit] {
   margin-bottom: .75vw;
   color: rgb(66,103,178);
   font-weight: bold;
-  font-size: 1vw;
+  font-size: 11px;
 
 }
 .new-post-top {
@@ -160,7 +159,7 @@ input[type=submit] {
   margin-bottom: .75vw;
   color: rgb(66,103,178);
   font-weight: bold;
-  font-size: 1vw;
+  font-size: 11px;
   position:relative;
   transform: translateX(-.5vw);
 }
@@ -173,10 +172,41 @@ input[type=submit] {
 }
 
 .like-comment-buttons{
+  /* width: 100%; */
+  display: inline;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
 }
-
+.like-button {
+  display: inline;
+  float: left;
+  width: 48% !important;
+  margin-left: 1% !important;
+  color: rgb(90, 90, 90) !important;
+  padding: 6px 40px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: white !important;
+}
+.unlike {
+  color: rgb(66, 103, 178) !important;
+}
+.comment-button {
+  display: inline;
+  /* float: none; */
+  width: 48% !important;
+  margin-left: 1%;
+  color: rgb(90, 90, 90) !important;
+  padding: 6px 40px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: white !important;
+}
+.like-button:hover, .comment-button:hover {
+  background-color: rgb(246, 247, 249) !important;
+}
 .liked-by{
   border-bottom: 1px solid lightgrey;
 }

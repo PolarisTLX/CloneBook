@@ -1,5 +1,9 @@
 <div class="posts-edit">
-<h1>Edit your post</h1>
+
+<div class = "new-post">
+  <div class="new-post-top">
+      <span>Edit your post</span>
+  </div>
 <%= form_for(@post, html: {multipart: true}) do |f| %>
   <%= f.text_area :content %><br/>
   <% if @post.image.exists? %>
@@ -11,4 +15,5 @@
   <%= f.file_field :image %><br/>
   <%= f.submit "Post" %>
 <% end %>
+</div>
 </div>

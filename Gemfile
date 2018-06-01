@@ -13,6 +13,9 @@ gem 'pg'
 # paperclip to attach files and images
 gem 'paperclip'
 
+# gem "font-awesome-rails"
+gem 'font_awesome5_rails'
+
 gem 'devise'
 
 
