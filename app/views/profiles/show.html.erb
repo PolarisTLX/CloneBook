@@ -1,7 +1,13 @@
 <div class="profiles-show">
 <div class="user-info">
   <h2>User Info:</h2>
-  <%= image_tag @profile.avatar.url(:tac), size: '20x20' %>
+
+  <% if !@profile.avatar.exists? && @profile.user.image %>
+    <%= image_tag @profile.user.image, size: '300x300' %>
+  <% else %>
+    <%= image_tag @profile.avatar.url(:medium), size: '300x300' %>
+  <% end %>
+
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
@@ -52,7 +58,12 @@
     <h2><%= @profile.user.first_name %>'s friends:</h2>
     <% @profile.user.friends.first(2).each do |friend| %>
       <p>
-        <%= image_tag friend.profile.avatar(:tac), size: '20x20' %><br/>
+        <% if !friend.profile.avatar.exists? && friend.image %>
+          <%= image_tag friend.image, size: '100x100' %>
+        <% else %>
+          <%= image_tag friend.profile.avatar.url(:thumb), size: '100x100' %>
+        <% end %>
+
         <%= friend.first_name %>
       </p>
     <% end %>
@@ -66,7 +77,11 @@
       <div class="post">
         <p>
           <span>
-            <%= image_tag post.user.profile.avatar.url(:tac), size: '20x20' %>
+            <% if !post.user.profile.avatar.exists? && post.user.image %>
+              <%= image_tag post.user.image, class:'tac-image', size: '20x20' %>
+            <% else %>
+              <%= image_tag post.user.profile.avatar.url(:tac), class:'tac-image', size: '20x20' %>
+            <% end %>
             <%= link_to "#{post.user.first_name}", post.user.profile %>
           </span>
           <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
@@ -134,7 +149,11 @@
           <% post.comments.each do |comment| %>
             <% user = User.find(comment.user_id) %>
             <p>
-              <%= image_tag user.profile.avatar.url(:tac), size: '20x20' %>
+              <% if !user.profile.avatar.exists? && user.image %>
+                <%= image_tag user.image, class:'tac-image', size: '20x20' %>
+              <% else %>
+                <%= image_tag user.profile.avatar.url(:tac), class:'tac-image', size: '20x20' %>
+              <% end %>
               <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
               <% if current_user.id == comment.user_id %>
                 <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>

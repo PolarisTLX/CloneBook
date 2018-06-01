@@ -1,7 +1,12 @@
 <div class="posts-show">
 <p>
   <span>
-    <%= image_tag @post.user.profile.avatar.url(:tac), size: '20x20' %>
+    <% if !@post.user.profile.avatar.exists? && @post.user.image %>
+      <%= image_tag @post.user.image, class: 'tac-image', size: '20x20' %>
+    <% else %>
+      <%= image_tag @post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+    <% end %>
+
     <%= link_to "#{@post.user.first_name}", @post.user.profile %>
   </span>
   <%= @post.content %><br/>
@@ -65,7 +70,12 @@
     <% @post.comments.each do |comment| %>
       <% user = User.find(comment.user_id) %>
       <p>
-        <%= image_tag user.profile.avatar.url(:tac), size: '20x20' %>
+        <% if !user.profile.avatar.exists? && user.image %>
+          <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
+        <% else %>
+          <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+        <% end %>
+
         <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
         <% if current_user.id == comment.user_id %>
           <span> <%= link_to 'Edit', edit_comment_path(comment) %> </span>

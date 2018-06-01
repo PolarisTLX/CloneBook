@@ -2,6 +2,12 @@
 <h1>All Friend Requests</h1>
 <% @users.each do |user| %>
   <p>
+    <% if !user.profile.avatar.exists? && user.image %>
+      <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
+    <% else %>
+      <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+    <% end %>
+
     <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
 
     <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put %>

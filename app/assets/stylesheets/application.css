@@ -34,6 +34,7 @@
   margin: 0;
   color: rgb(255,255,255);
   width: 100%;
+  z-index: 2;
 }
 
 .navbar ul {
@@ -67,7 +68,7 @@ a:visited {
 }
 .tac-image {
   border-radius: 50%;
-  transform: translateY(0.5vw);
+  transform: translateY(0.3vw);
 }
 .link-user-name {
 
@@ -132,6 +133,7 @@ input[type=submit] {
   border-radius: 3px;
   margin-bottom: 1vw;
   padding-bottom: .5vw;
+  padding-left: .5vw;
 }
 
 .new-post {
@@ -153,13 +155,14 @@ input[type=submit] {
   background-color: rgb(246,247,249);
   border: 1px solid lightgrey ;
   border-top-right-radius, border-top-left-radius: 3px;
-  width: 100%;
+  width: 101.2%;
   height: 30px;
   margin-bottom: .75vw;
   color: rgb(66,103,178);
   font-weight: bold;
   font-size: 1vw;
   position:relative;
+  transform: translateX(-.5vw);
 }
 
 .new-post-top span {
