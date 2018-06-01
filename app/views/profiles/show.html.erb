@@ -77,7 +77,7 @@
     <h2><%= @profile.user.first_name %>'s posts:</h2>
     <% @posts.each do |post| %>
       <div class="post">
-        <p>
+        <p class="post-header">
           <span>
             <%= link_to(post.user.profile) do %>
               <% if !post.user.profile.avatar.exists? && post.user.image %>
@@ -87,22 +87,24 @@
               <% end %>
             <% end %>
 
-            <%= link_to "#{post.user.first_name}", post.user.profile %>
+            <%= link_to "#{post.user.first_name}", post.user.profile, class: "user-name" %>
           </span>
           <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post %>
           <% if current_user.id == post.user_id %>
-            <span> <%= link_to 'Edit Post', edit_post_path(post) %> </span>
-            <span> <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %> </span>
+          <span class="edit-delete-post">
+            <%= link_to 'Edit Post', edit_post_path(post) %>
+            <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %>
+          </span>
           <% end %>
         </p>
-        <p>
+        <p class="post-content">
           <%= post.content %><br/>
           <% if post.image.exists? %>
             <%= image_tag post.image.url(:medium) %><br/>
           <% end %>
         </p>
 
-        <p class="like-comment-buttons">
+        <div class="like-comment-buttons">
           <% like = post.likes.where("user_id = ?", current_user.id) %>
           <% if like.empty? %>
           <%= button_to likes_path(like: {post_id: post.id} ), method: :post, class: "like-button" do %>
@@ -114,7 +116,7 @@
             <% end %>
           <% end %>
           <button class="comment-button"><i class="far fa-comment-alt"></i> Comment</button>
-        </p>
+        </div>
 
         <% if post.likes.count > 0 %>
 
@@ -124,7 +126,7 @@
             <% when 1 %>
                 <% user = User.find(post.likes.first.user_id) %>
                 <strong>
-                  <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                  <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %>
                 </strong>
             <% when 2 %>
 
@@ -132,9 +134,9 @@
                 <% user = User.find(like.user_id) %>
                 <strong>
                   <% unless index == post.likes.count - 1 %>
-                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %> and
                   <% else %>
-                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %>
                   <% end %>
                 </strong>
 
@@ -144,8 +146,8 @@
               <% user1 = User.find(post.likes.first.user_id) %>
               <% user2 = User.find(post.likes.second.user_id) %>
               <strong>
-                <%= link_to "#{user1.first_name} #{user1.last_name}", user1.profile %>
-                <%= link_to "#{user2.first_name} #{user2.last_name}", user2.profile %>
+                <%= link_to "#{user1.first_name} #{user1.last_name}", user1.profile, class: "user-name" %>,
+                <%= link_to "#{user2.first_name} #{user2.last_name}", user2.profile, class: "user-name" %>
                   <%= "and " + pluralize(post.likes.count - 2, "other") %>
               </strong>
             <% end %>
@@ -167,7 +169,7 @@
 
             <p class="comment">
               <span class="comment-content">
-                <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile %></strong> <%= comment.content %>
+                <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %></strong> <%= comment.content %>
               </span>
               <% if current_user.id == comment.user_id %>
                 <span class="edit-delete-comment">
@@ -188,7 +190,7 @@
             <% end %>
           <% end %>
 
-          <%= f.text_area :content, class: "comment-field", placeholder: "Type your comment here"  %>
+          <%= f.text_area :content, class: "comment-field", placeholder: "Write a comment...", rows: "1"  %>
           <%= f.hidden_field :post_id, value: post.id %>
           <%= f.submit "Comment" %>
         <% end %>

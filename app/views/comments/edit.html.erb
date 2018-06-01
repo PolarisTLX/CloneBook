@@ -1,3 +1,4 @@
+<div class="comments-edit">
 <h2> Edit your comment on: </h2>
 <p>
   <span><%= User.find(@comment.post.user_id).first_name %></span>
@@ -12,3 +13,4 @@
   <%= f.hidden_field :post_id, value: @comment.post.id %>
   <%= f.submit "Comment" %>
 <% end %>
+</div>

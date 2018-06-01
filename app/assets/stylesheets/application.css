@@ -24,6 +24,7 @@
    grid-template-rows: 5vw auto;
    font-family: 'Roboto', sans-serif;
    background-color: rgb(233,235,238);
+   font-size: 12px;
  }
 
 
@@ -37,7 +38,7 @@
   margin: 0;
   color: rgb(255,255,255);
   width: 100%;
-  z-index: 2;
+  z-index: 5;
 }
 
 .navbar ul {
@@ -99,6 +100,10 @@ textarea {
 
 .comment-field {
   width: 85%;
+  border: 1.5px solid rgb(233,235,238);
+  border-radius: 25px;
+  margin-bottom: 5px;
+  padding-top: 10px;
 }
 
 input[type=submit] {
@@ -115,11 +120,14 @@ input[type=submit] {
 }
 
 
-.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .requests-index, .users-index, .users-show, .registrations-edit, .registrations-new, .sessions-new {
+.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit, .registrations-new, .sessions-new {
   grid-area: 2 / 2 / 3 / 3;
 }
 
-
+.user-name {
+  color: rgb(66, 103, 178) !important;
+  font-weight: bold;
+}
 
 .new-post img {
   width: 50px;
@@ -175,12 +183,43 @@ input[type=submit] {
   left: 2vw;
 }
 
-.like-comment-buttons{
-  /* width: 100%; */
-  display: inline;
+.post-header {
+  position: relative;
+}
+.edit-delete-post {
+  position: absolute;
+  right: 10px;
+  /* margin-right: 5%; */
+  font-size: 10px;
+  color: rgb(90,90,90);
+}
+.edit-delete-post a:hover {
+  color: black;
+}
+
+.edit-delete-post a {
+  margin-left: 5px;
+}
+
+.post-content {
+  font-size: 14px;
+  padding-left: 5px;
+}
+.like-comment-buttons {
+  padding: 3px 0px;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
 }
+
+/* .like-comment-buttons{
+  display: inline;
+  width: 95%;
+  float: left:
+  padding: 20px 0px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  z-index: 2;
+} */
 .like-button {
   display: inline;
   float: left;
@@ -212,7 +251,11 @@ input[type=submit] {
   background-color: rgb(246, 247, 249) !important;
 }
 .liked-by{
+  font-weight: lighter !important;
+  color: rgb(66, 103, 178);
   border-bottom: 1px solid lightgrey;
+  padding-bottom: 5px;
+  padding-left: 5px;
 }
 .new-comment-image {
   transform: translateY(-12px) !important;
@@ -221,6 +264,7 @@ input[type=submit] {
 .comment-image {
   float: left;
   margin-right: 5px;
+  z-index: 1;
 }
 
 .edit-delete-comment {
@@ -240,5 +284,12 @@ input[type=submit] {
 
 .comment {
   position: relative;
-  width: 83% !important;
+  width: 72% !important;
+  margin-left: 25px !important;
+  padding: 5px 10px !important;
+  border-radius: 15px;
+  background-color: rgb(230, 235, 238);
+}
+.comment-content {
+
 }
