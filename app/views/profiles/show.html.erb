@@ -1,30 +1,21 @@
-<div class="profiles-show">
-<div class="user-info">
-  <h2>User Info:</h2>
+<!-- <div class="profiles-show"> -->
 
+<div class="cover-background"></div>
+
+<div class="user-image">
   <% if !@profile.avatar.exists? && @profile.user.image %>
     <%= image_tag @profile.user.image, size: '300x300' %>
   <% else %>
     <%= image_tag @profile.avatar.url(:medium), size: '300x300' %>
   <% end %>
+</div>
 
+
+<div class="user-info">
+  <h2>User Info:</h2>
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
-
-    <% unless current_user == @profile.user %>
-      <% if current_user.requesters.where('requests.accepted = ?', 0).include?(@profile.user) %>
-        <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: @profile.user.id).id, request: { requester_id: @profile.user.id }), method: :put %>
-      <% elsif current_user.requesters.include?(@profile.user) %>
-      <% elsif !current_user.requestees.include?(@profile.user) %>
-        <%= link_to "Add Friend", requests_path(request: { requestee_id: @profile.user.id }), method: :post %>
-      <% end %>
-    <% end %>
-
-    <br/>
-
-    <strong>Email:</strong>
-    <%= @profile.user.email %>
 
     <br/>
 
@@ -47,34 +38,48 @@
     <%= @profile.bio %>
   </p>
 
+  <% unless current_user == @profile.user %>
+    <% if current_user.requesters.where('requests.accepted = ?', 0).include?(@profile.user) %>
+      <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: @profile.user.id).id, request: { requester_id: @profile.user.id }), method: :put %>
+    <% elsif current_user.requesters.include?(@profile.user) %>
+    <% elsif !current_user.requestees.include?(@profile.user) %>
+      <%= link_to "Add Friend", requests_path(request: { requestee_id: @profile.user.id }), method: :post, class: "add-friend-button" %>
+    <% end %>
+  <% end %>
+
   <% if @profile.user == current_user %>
-    <%= link_to "Edit Your Profile", edit_profile_path(current_user.profile)%>
+    <%= link_to "Edit Your Profile", edit_profile_path(current_user.profile), class: "edit-your-profile-button"%>
   <% end %>
 
 </div>
 
+<div class="friends-background"></div>
+
 <div class="friends">
   <% if @profile.user.friends.count > 0 %>
     <h2><%= @profile.user.first_name %>'s friends:</h2>
-    <% @profile.user.friends.first(2).each do |friend| %>
-      <p>
-        <%= link_to(friend.profile) do %>
-          <% if !friend.profile.avatar.exists? && friend.image %>
-            <%= image_tag friend.image, size: '100x100' %>
-          <% else %>
-            <%= image_tag friend.profile.avatar.url(:thumb), size: '100x100' %>
-          <% end %>
-        <% end %>
+    <div class="friends-grid">
+        <% @profile.user.friends.first(6).each do |friend| %>
+          <div>
+            <%= link_to(friend.profile) do %>
+              <% if !friend.profile.avatar.exists? && friend.image %>
+                <%= image_tag friend.image, size: '100x100' %>
+              <% else %>
+                <%= image_tag friend.profile.avatar.url(:thumb), size: '100x100' %>
+              <% end %>
+            <% end %>
 
-        <%= friend.first_name %>
-      </p>
-    <% end %>
+            <p class="friend-name">
+              <%= friend.first_name %>
+            </p>
+          </div>
+        <% end %>
+    </div>
   <% end %>
 </div>
 
 <div class="user-posts">
   <% if @posts.count > 0 %>
-    <h2><%= @profile.user.first_name %>'s posts:</h2>
     <% @posts.each do |post| %>
       <div class="post">
         <p class="post-header">
@@ -198,4 +203,4 @@
     <% end %>
   <% end %>
 </div>
-</div>
+<!-- </div> -->

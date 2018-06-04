@@ -122,7 +122,7 @@ input[type=submit] {
 }
 
 
-.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit {
+.posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit {
   grid-area: 2 / 2 / 3 / 3;
 }
 
@@ -137,6 +137,96 @@ input[type=submit] {
   margin-top: 30px;
   margin-left: -100px;
 }
+
+/* PROFILE PAGE */
+
+ /* .profiles-show {
+   grid-area: 2 / 2 / 3 / 4;
+ } */
+.cover-background {
+  grid-area: 2 / 2 / 3 / 4;
+  width: 81.5%;
+  /* height: 100px; */
+  background-color: white;
+  margin-left: 25px;
+}
+.user-image {
+  grid-area: 2 / 2 / 3 / 3;
+  margin-left: 100px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.user-info {
+  grid-area: 2 / 3 / 3 / 4;
+  font-size: 20px;
+  margin-top: 25px;
+  margin-left: -100px;
+  line-height: 1.5;
+}
+.user-info p {
+  margin-bottom: 30px;
+}
+
+.add-friend-button {
+  background-color: rgb(233, 235, 238);
+  border: 0.5px solid black;
+  border-radius: 3px;
+  padding: 5px 20px;
+  /* transform: translateY(25px); */
+  margin-left: 225px;
+}
+
+.edit-your-profile-button {
+  background-color: rgb(233, 235, 238);
+  border: 0.5px solid black;
+  border-radius: 3px;
+  padding: 4px 8px;
+  /* transform: translateY(25px); */
+  margin-left: 200px;
+}
+
+
+.friends {
+  grid-area: 3 / 2 / 4 / 3;
+  width: 40%;
+  margin-left: 65px;
+  margin-top: 25px;
+}
+.friends-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  /* margin-left: 50px; */
+}
+
+.friend-name {
+  color: white;
+  margin-left: 5px;
+  margin-top: -25px;
+  margin-bottom: 30px;
+}
+
+.friends-background {
+  background-color: white;
+  grid-area: 3 / 2 / 4 / 3;
+  height: 300px;
+  width: 50%;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+
+.user-posts {
+  grid-area: 3 / 3 / 4 / 4;
+  width: 120%;
+  margin-left: -275px;
+  margin-top: 20px;
+}
+
+
+
+
+/* END PROFILE PAGE */
 
 .user-name {
   color: rgb(66, 103, 178) !important;
