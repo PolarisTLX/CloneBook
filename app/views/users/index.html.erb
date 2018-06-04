@@ -1,24 +1,31 @@
 <div class="users-index">
-<h1>All Users</h1>
-<% @users.each do |user| %>
-  <% next if user == current_user %>
-  <p>
-    <%= link_to(user.profile) do %>
-      <% if !user.profile.avatar.exists? && user.image %>
-        <%= image_tag user.image, class: 'tac-image', size: '20x20' %>
-      <% else %>
-        <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+  <h1>All Users</h1>
+
+  <div class="all-users">
+    <div class="users-grid">
+      <% @users.each do |user| %>
+        <% next if user == current_user %>
+          <div>
+            <%= link_to(user.profile) do %>
+              <% if !user.profile.avatar.exists? && user.image %>
+                <%= image_tag user.image, size: '100x100' %>
+              <% else %>
+                <%= image_tag user.profile.avatar.url(:thumb), size: '100x100' %>
+              <% end %>
+            <% end %>
+
+            <p class="friend-name">
+              <%= user.first_name %>
+            </p>
+
+            <% if current_user.requesters.where('requests.accepted = ?', 0).include?(user) %>
+              <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put %> 
+            <% elsif current_user.requesters.include?(user) %>
+            <% elsif !current_user.requestees.include?(user) %>
+              <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
+            <% end %>
+          </div>
       <% end %>
-    <% end %>
-
-    <%= link_to "#{user.first_name} #{user.last_name}", user.profile %>
-
-    <% if current_user.requesters.where('requests.accepted = ?', 0).include?(user) %>
-      <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put %>
-    <% elsif current_user.requesters.include?(user) %>
-    <% elsif !current_user.requestees.include?(user) %>
-      <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
-    <% end %>
-  </p>
-<% end %>
+    </div>
+  </div>
 </div>

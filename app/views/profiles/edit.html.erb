@@ -22,9 +22,17 @@
       <% else %>
         <%= image_tag @profile.avatar.url(:thumb), size: '100x100' %>
       <% end %>
-      
+
       <%= f.label :avatar, "Change Your Profile Image" %><br/>
       <%= f.file_field :avatar %>
+      <br/>
+
+      <% if @profile.cover.exists? %>
+        <%= image_tag @profile.cover.url(:large) %>
+      <% end %>
+
+      <%= f.label :cover, "Change Your Cover Image" %><br/>
+      <%= f.file_field :cover %>
       <br/>
 
       <%= f.label :birthday, "Birthday" %>

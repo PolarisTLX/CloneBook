@@ -1,6 +1,10 @@
 <!-- <div class="profiles-show"> -->
 
-<div class="cover-background"></div>
+<div class="cover-background">
+  <% if @profile.cover.exists? %>
+    <%= image_tag @profile.cover.url(:large), class: "cover-image" %>
+  <% end %>
+</div>
 
 <div class="user-image">
   <% if !@profile.avatar.exists? && @profile.user.image %>
@@ -12,7 +16,6 @@
 
 
 <div class="user-info">
-  <h2>User Info:</h2>
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>

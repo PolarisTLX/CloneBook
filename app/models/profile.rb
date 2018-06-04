@@ -4,8 +4,10 @@ class Profile < ApplicationRecord
   # for paperclip for file attachment functionality:
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#", tac: "20x20#" },
                              default_url: ActionController::Base.helpers.image_path("missing.png")
-
   validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg", "image/png"]
+
+  has_attached_file :cover, styles: { large: "800x400#" }
+  validates_attachment_content_type :cover, content_type: ["image/jpg", "image/jpeg", "image/png"]
 
   def profile_photo
     if self.avatar.exists?

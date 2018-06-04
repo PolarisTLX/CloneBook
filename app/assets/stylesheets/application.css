@@ -20,8 +20,9 @@
    margin: 0;
    display: grid;
    /* grid-template-columns: 22% 33% 25% 20%; */
-   grid-template-columns: 22% 33% 25% 20%;
-   grid-template-rows: 5vw auto;
+   /* grid-template-columns: 22% 33% 25% 20%; */
+   grid-template-columns: 300px 450px 342px 273px;
+   grid-template-rows: 24px auto;
    font-family: 'Roboto', sans-serif;
    background-color: rgb(233,235,238);
    font-size: 12px;
@@ -122,19 +123,29 @@ input[type=submit] {
 }
 
 
-.posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit {
+.posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .requests-index, .users-show, .registrations-edit{
   grid-area: 2 / 2 / 3 / 3;
+  margin-top: 20px;
+}
+
+.users-index {
+  grid-area: 2 / 2 / 3 / 4;
+  margin-top: 20px;
 }
 
 .registrations-new, .sessions-new {
   grid-area: 2 / 3 / 3 / 4;
-  margin-top: 30px;
+  margin-top: 70px;
   width: 120%;
+}
+
+.registrations-edit {
+  margin-top: 34px;
 }
 
 .external-login {
   grid-area: 2 / 2 / 3 / 3;
-  margin-top: 30px;
+  margin-top: 70px;
   margin-left: -100px;
 }
 
@@ -156,6 +167,11 @@ input[type=submit] {
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
+.user-image img{
+  border: 5px solid white;
+}
+
 .user-info {
   grid-area: 2 / 3 / 3 / 4;
   font-size: 20px;
@@ -165,6 +181,7 @@ input[type=submit] {
 }
 .user-info p {
   margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, .9);
 }
 
 .add-friend-button {
@@ -213,6 +230,23 @@ input[type=submit] {
   width: 50%;
   margin-left: 25px;
   margin-top: 20px;
+}
+
+.all-users {
+  grid-area: 3 / 2 / 4 / 4;
+  width: 100%;
+  margin-top: 25px;
+}
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  /* margin-left: 50px; */
+}
+
+.users-grid a{
+  margin: auto;
+  /* margin-left: 50px; */
 }
 
 
@@ -465,7 +499,9 @@ input[type=submit] {
 .confirm-regist input {
   width: 94%;
 }
-
+.current-password-regist input {
+  width: 94%;
+}
 
 
 
@@ -501,6 +537,21 @@ input[type=submit] {
   margin-left: 5px;
   font-size: 20px;
   background-color: rgb(95, 156, 76);
+}
+
+.registrations-edit form label, .registrations-edit h3, .registrations-edit p {
+  margin-left: 5px;
+}
+
+.delete-account-button {
+  background-color: darkred !important;
+}
+
+.delete-account {
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .signin-links {
