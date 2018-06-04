@@ -34,3 +34,12 @@
 <% end %>
 
 </div>
+
+<div class="external-login">
+  <h1 class="regist-header">External Logins</h1>
+  <p class="regist-free">Click to sign in with one of the following: </p>
+  <div class="signin-links">
+    <%= link_to fa_icon('facebook-square', type: :brand, color: 'rgb(66, 103, 178)'), user_facebook_omniauth_authorize_path, class: "facebook-signin" %>
+    <%= link_to fa_icon('github-square', type: :brand, color: 'black'), user_github_omniauth_authorize_path, class: "github-signin" %>
+  </div>
+</div>

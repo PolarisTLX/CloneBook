@@ -122,8 +122,18 @@ input[type=submit] {
 }
 
 
-.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit, .registrations-new, .sessions-new {
+.posts, .posts-edit, .posts-show, .profiles-edit, .profiles-show, .comments-edit, .requests-index, .users-index, .users-show, .registrations-edit {
   grid-area: 2 / 2 / 3 / 3;
+}
+
+.registrations-new, .sessions-new {
+  grid-area: 2 / 3 / 3 / 4;
+  width: 120%;
+}
+
+.external-login {
+  grid-area: 2 / 2 / 3 / 3;
+  margin-left: -100px;
 }
 
 .user-name {
@@ -346,29 +356,28 @@ input[type=submit] {
 
 
 .firstname-regist input {
-  width: 45.5%;
+  width: 43.5%;
   float: left;
 }
 .lastname-regist input {
-  width: 45.5%;
+  width: 43.5%;
   float: right;
   margin-right: 0;
 }
 .email-regist input {
-  width: 96%;
+  width: 94%;
 }
 .password-regist input {
-  width: 96%;
+  width: 94%;
 }
 .confirm-regist input {
-  width: 96%;
+  width: 94%;
 }
 
 
 
 
 .field input {
-  font-size: 11px;
 	border: 1px solid #ccc;
 	/* -moz-border-radius: 10px;
 	-webkit-border-radius: 10px; */
@@ -376,7 +385,7 @@ input[type=submit] {
 	/* -moz-box-shadow: 2px 2px 3px #666;
 	-webkit-box-shadow: 2px 2px 3px #666; */
 	box-shadow: none;
-	font-size: 20px;
+	font-size: 16px;
 	padding: 8px 7px;
   margin: 5px;
 	outline: 0;
@@ -388,16 +397,33 @@ input[type=submit] {
 
 
 .conditions {
-  width: 60%;
+  width: 75%;
   margin-left: 5px;
 }
 
 .registration-button input {
   /* border: 0.5px solid black; */
   border-radius: 6px;
-  width: 35%;
+  width: 45%;
   margin-top: 10px;
   margin-left: 5px;
   font-size: 20px;
   background-color: rgb(95, 156, 76);
+}
+
+.signin-links {
+  margin-left: 80px;
+}
+
+.facebook-signin {
+  font-size: 100px;
+}
+
+.github-signin {
+  font-size: 100px;
+  margin-left: 20px;
+}
+
+.external-login .regist-header {
+  margin-bottom: 20px;
 }
