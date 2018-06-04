@@ -330,3 +330,74 @@ input[type=submit] {
 .comment-content {
 
 }
+
+.regist-header {
+  font-size: 38px;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+.regist-free {
+  font-size: 20px;
+  font-weight: 100;
+  margin-left: 5px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+
+.firstname-regist input {
+  width: 45.5%;
+  float: left;
+}
+.lastname-regist input {
+  width: 45.5%;
+  float: right;
+  margin-right: 0;
+}
+.email-regist input {
+  width: 96%;
+}
+.password-regist input {
+  width: 96%;
+}
+.confirm-regist input {
+  width: 96%;
+}
+
+
+
+
+.field input {
+  font-size: 11px;
+	border: 1px solid #ccc;
+	/* -moz-border-radius: 10px;
+	-webkit-border-radius: 10px; */
+	border-radius: 5px;
+	/* -moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666; */
+	box-shadow: none;
+	font-size: 20px;
+	padding: 8px 7px;
+  margin: 5px;
+	outline: 0;
+	/* -webkit-appearance: none; */
+}
+.field input:focus {
+	/* border-color: #339933; */
+}
+
+
+.conditions {
+  width: 60%;
+  margin-left: 5px;
+}
+
+.registration-button input {
+  /* border: 0.5px solid black; */
+  border-radius: 6px;
+  width: 35%;
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 20px;
+  background-color: rgb(95, 156, 76);
+}
