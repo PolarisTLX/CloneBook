@@ -70,24 +70,24 @@ a:visited {
   border-radius: 50%;
   transform: translateY(4px);
 }
-.link-user-name {
 
-}
-.link-home {
-
-}
-.link-edit {
-
-}
-.link-signout {
-
+.entry-navbar {
+  height: 60px;
 }
 
+.entry-navbar ul {
+  margin-top: 30px;
+}
 
-/* .yield {
-  grid-row-start: 2;
-} */
+.logo {
+  font-size: 36px !important;
+  margin-left: 12vw;
+  margin-right: 53vw !important;
+}
 
+.link-login a, .link-signup a{
+  font-size: 14px;
+}
 
 
 textarea {
@@ -128,11 +128,13 @@ input[type=submit] {
 
 .registrations-new, .sessions-new {
   grid-area: 2 / 3 / 3 / 4;
+  margin-top: 30px;
   width: 120%;
 }
 
 .external-login {
   grid-area: 2 / 2 / 3 / 3;
+  margin-top: 30px;
   margin-left: -100px;
 }
 
