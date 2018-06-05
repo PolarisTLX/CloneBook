@@ -11,6 +11,9 @@ users = User.create([
   { first_name: 'Paul',  last_name: 'Rail',   email: 'Paul@email.com',  password: 'password' },
   { first_name: 'Ariel', last_name: 'Camus',  email: 'Ariel@email.com', password: 'password' },
   { first_name: 'Kevin', last_name: 'Wahome', email: 'Kevin@email.com', password: 'password' },
+  { first_name: 'Sava', last_name: 'Vuckovic', email: 'Sava@email.com', password: 'password' },
+  { first_name: 'Michael', last_name: 'LongName', email: 'Mike@email.com', password: 'password' },
+  { first_name: 'Emily', last_name: 'LongName', email: 'Emily@email.com', password: 'password' },
   { first_name: 'Alvaro', last_name: 'Diaz', email: 'Alvaro@email.com', password: 'password' }])
 
 users = User.all
@@ -39,11 +42,19 @@ posts.each do |post|
   end
 end
 
-# events = Event.create([{ title: "Something long enough", host_id: 1, description: "Text goes here, I hope.",              location: "Somewhere", date: "2018-08-01" },
-#                      { title: "This is the 2nd event", host_id: 2, description: "2nd Text goes here, I hope.", location: "2nd location", date: "2018-09-01" },
-#                      { title: "This is the 3rd event", host_id: 1, description: "3rd Text goes here, I hope.", location: "3rd location", date: "2018-10-31" }])
-#
-# # For invites, create 4 (2 events x 2 invites each):
-# # Event 1: hosted by Person1, both accept.
-# # Event 2: hosted by Person2, only host is confirmed.
-# invites = Invite.create([{attended_event_id: 1, attendee_id: 2, accepted: true},{attended_event_id: 1, attendee_id: 1, accepted: true},{attended_event_id: 2, attendee_id: 2, accepted: true},{attended_event_id: 2, attendee_id: 1, accepted: false}])
+
+# 2 friends for each user:
+users = User.all
+2.times do
+  users.each do |user|
+
+    # requestee can't be the same as current user
+    requestee_id_num = rand(1..8)
+    while requestee_id_num == user.id || user.requestees.include?(requestee_id_num) do
+      requestee_id_num = rand(1..8)
+    end
+
+    user.sent_requests.create(requestee_id: requestee_id_num, accepted: 1)
+
+  end
+end

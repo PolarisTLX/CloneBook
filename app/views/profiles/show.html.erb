@@ -8,9 +8,9 @@
 
 <div class="user-image">
   <% if !@profile.avatar.exists? && @profile.user.image %>
-    <%= image_tag @profile.user.image, size: '300x300' %>
+    <%= image_tag @profile.user.image %>
   <% else %>
-    <%= image_tag @profile.avatar.url(:medium), size: '300x300' %>
+    <%= image_tag @profile.avatar.url(:medium) %>
   <% end %>
 </div>
 
@@ -19,22 +19,18 @@
   <p>
     <strong>Name:</strong>
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
-
     <br/>
 
     <strong>Date of Birth:</strong>
     <%= @profile.birthday %>
-
     <br/>
 
     <strong>Gender:</strong>
     <%= @profile.gender %>
-
     <br/>
 
     <strong>City:</strong>
     <%= @profile.location %>
-
     <br/>
 
     <strong>About Me:</strong>
@@ -62,7 +58,7 @@
   <% if @profile.user.friends.count > 0 %>
     <h2><%= @profile.user.first_name %>'s friends:</h2>
     <div class="friends-grid">
-        <% @profile.user.friends.first(6).each do |friend| %>
+        <% @profile.user.friends.first(4).each do |friend| %>
           <div>
             <%= link_to(friend.profile) do %>
               <% if !friend.profile.avatar.exists? && friend.image %>
