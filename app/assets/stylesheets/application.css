@@ -187,27 +187,45 @@ input[type=submit] {
   margin-top: 120px;
 }
 
-.user-info {
-  grid-area: 2 / 3 / 3 / 4;
-  font-size: 20px;
-  margin-top: 80px;
-  margin-left: -50px;
-  line-height: 1.5;
+.cover-content {
+  grid-area: 2 / 2 / 3 / 4;
+  width: 851px;
+  height: 358px;
+  font-size: 14px;   /*this is for both buttons*/
+  position: relative;
 }
-.user-info p {
-  padding: 10px;
-  margin-bottom: 40px;
-  background-color: rgba(255, 255, 255, .9);
+.cover-content p {
+  color: white;
+  font-size: 24px;
+  margin-left: 250px;
+  margin-top: 280px;
 }
 
 .add-friend-button {
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  font-weight: bold;
   background-color: rgb(233, 235, 238);
   border: 0.5px solid black;
   border-radius: 3px;
-  padding: 5px 20px;
+  padding: 6px 20px;
   /* transform: translateY(25px); */
-  margin-left: 225px;
+  /* margin-left: 225px; */
 }
+.edit-your-profile-button {
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  font-weight: bold;
+  background-color: rgb(233, 235, 238);
+  border: 0.5px solid black;
+  border-radius: 3px;
+  padding: 6px 20px;
+  /* transform: translateY(25px); */
+  /* margin-left: 210px; */
+}
+
 
 .users-index-user {
   position: relative
@@ -218,21 +236,43 @@ input[type=submit] {
   bottom: -10px;
 }
 
-.edit-your-profile-button {
-  background-color: rgb(233, 235, 238);
-  border: 0.5px solid black;
+
+
+.user-info-left-background {
+  grid-area: 3 / 2 / 4 / 3;
+  height: 185px;
+  width: 58%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 20px;
   border-radius: 3px;
-  padding: 4px 8px;
-  /* transform: translateY(25px); */
-  margin-left: 210px;
+}
+.user-info-left {
+  grid-area: 3 / 2 / 4 / 3;
+  width: 55%;
+  margin-left: 52px;
+  margin-top: 17px;
+  font-size: 18px;
+  line-height: 1.7;
 }
 
-
+.friends-background {
+  grid-area: 3 / 2 / 4 / 3;
+  height: 300px;
+  width: 58%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  margin-left: 25px;
+  margin-top: 212px;
+  border-radius: 3px;
+}
 .friends {
   grid-area: 3 / 2 / 4 / 3;
   width: 55%;
   margin-left: 52px;
-  margin-top: 25px;
+  margin-top: 217px;
 }
 .friends-grid {
   display: grid;
@@ -248,16 +288,8 @@ input[type=submit] {
   margin-bottom: 30px;
 }
 
-.friends-background {
-  grid-area: 3 / 2 / 4 / 3;
-  height: 300px;
-  width: 58%;
-  background-color: white;
-  border: 1px solid lightgrey;
-  margin-left: 25px;
-  margin-top: 20px;
-  border-radius: 3px;
-}
+
+
 
 .all-users {
   grid-area: 3 / 2 / 4 / 4;
@@ -280,9 +312,9 @@ input[type=submit] {
 
 .user-posts {
   grid-area: 3 / 3 / 4 / 4;
-  width: 170%;
+  width: 171%;
   margin-left: -170px;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 
