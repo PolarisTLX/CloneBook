@@ -43,7 +43,7 @@
 
   <% unless current_user == @profile.user %>
     <% if current_user.requesters.where('requests.accepted = ?', 0).include?(@profile.user) %>
-      <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: @profile.user.id).id, request: { requester_id: @profile.user.id }), method: :put %>
+      <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: @profile.user.id).id, request: { requester_id: @profile.user.id }), method: :put, class: "add-friend-button" %>
     <% elsif current_user.requesters.include?(@profile.user) %>
     <% elsif !current_user.requestees.include?(@profile.user) %>
       <%= link_to "Add Friend", requests_path(request: { requestee_id: @profile.user.id }), method: :post, class: "add-friend-button" %>

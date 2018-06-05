@@ -5,7 +5,7 @@
     <div class="users-grid">
       <% @users.each do |user| %>
         <% next if user == current_user %>
-          <div>
+          <div class="users-index-user">
             <%= link_to(user.profile) do %>
               <% if !user.profile.avatar.exists? && user.image %>
                 <%= image_tag user.image, size: '100x100' %>
@@ -19,10 +19,10 @@
             </p>
 
             <% if current_user.requesters.where('requests.accepted = ?', 0).include?(user) %>
-              <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put %> 
+              <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: user.id).id, request: { requester_id: user.id }), method: :put, class: "add-friend-button users-index-button" %>
             <% elsif current_user.requesters.include?(user) %>
             <% elsif !current_user.requestees.include?(user) %>
-              <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post %>
+              <%= link_to "Add Friend", requests_path(request: { requestee_id: user.id }), method: :post, class: "add-friend-button users-index-button" %>
             <% end %>
           </div>
       <% end %>
