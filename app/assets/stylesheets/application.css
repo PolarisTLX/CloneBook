@@ -160,7 +160,7 @@ input[type=submit] {
   width: 851px;
   height: 358px;
   /* height: 100px; */
-  background-color: white;
+  background: linear-gradient(to top, rgb(90, 90, 90), white);
   margin-left: 25px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -226,18 +226,6 @@ input[type=submit] {
   /* margin-left: 210px; */
 }
 
-
-.users-index-user {
-  position: relative
-}
-
-.users-index-button {
-  position: absolute;
-  bottom: -10px;
-}
-
-
-
 .user-info-left-background {
   grid-area: 3 / 2 / 4 / 3;
   height: 185px;
@@ -295,6 +283,7 @@ input[type=submit] {
   grid-area: 3 / 2 / 4 / 4;
   width: 100%;
   margin-top: 25px;
+  padding-bottom: 18px;
 }
 .users-grid {
   position: relative;
@@ -321,6 +310,24 @@ input[type=submit] {
 
 
 /* END PROFILE PAGE */
+
+.users-index-user {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 18px;
+}
+
+.users-index-button {
+  position: absolute;
+  bottom: -10px;
+  right: 19px;
+}
+
+.users-index h1 {
+  margin-left: 18px;
+}
+
+
 
 .user-name {
   color: rgb(66, 103, 178) !important;
