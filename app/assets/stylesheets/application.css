@@ -418,6 +418,14 @@ input[type=submit] {
   transform: translateY(2px);
 }
 
+.alert {
+  grid-area: 3 / 3 / 4 / 4 ;
+  /* margin-top: 100px; */
+  margin-left: 10px;
+  font-size: 20px;
+  /* color: darkred; */
+}
+
 .flash {
   padding-top: 6px;
   text-align: center;
@@ -508,9 +516,13 @@ input[type=submit] {
   border-bottom: 1px solid lightgrey;
   padding-bottom: 5px;
   padding-left: 5px;
+  margin-bottom: 0;
 }
 .new-comment-image {
   transform: translateY(-12px) !important;
+}
+.new_comment {
+  margin-top: 10px;
 }
 
 .comment-image {
@@ -518,6 +530,12 @@ input[type=submit] {
   margin-right: 5px;
   z-index: 1;
 }
+/* .all-comments a:first-of-type { */
+/* .all-comments:first-child {
+  transform: translateY(35px) !important;
+  width: 50px;
+  border: 5px solid red !important;
+} */
 
 .edit-delete-comment {
   position: absolute;
@@ -538,7 +556,7 @@ input[type=submit] {
   position: relative;
   width: 72% !important;
   margin-left: 25px !important;
-  padding: 5px 10px !important;
+  padding: 10px 10px 5px 10px !important;
   border-radius: 15px;
   background-color: rgb(230, 235, 238);
 }
@@ -561,11 +579,11 @@ input[type=submit] {
 
 
 .firstname-regist input {
-  width: 43.5%;
+  width: 43%;
   float: left;
 }
 .lastname-regist input {
-  width: 43.5%;
+  width: 43%;
   float: right;
   margin-right: 0;
 }

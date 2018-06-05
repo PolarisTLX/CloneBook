@@ -16,7 +16,7 @@
 
 
 <div class="cover-content">
-  
+
 
   <p class ="cover-name">
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
@@ -167,6 +167,7 @@
         <% end %>
 
         <% if post.comments.count > 0 %>
+        <div class="all-comments">
           <% post.comments.each do |comment| %>
             <% user = User.find(comment.user_id) %>
             <%= link_to(user.profile) do %>
@@ -189,6 +190,7 @@
               <% end %>
             </p>
           <% end %>
+        </div>
         <% end %>
 
         <%= form_for(@comment) do |f| %>

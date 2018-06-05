@@ -51,7 +51,7 @@
   </div>
 
     <% flash.each do |message_type, message| %>
-      <% next if message == 'Post successful!' %>
+      <% next if message_type[0..4] != 'alert' %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
 
