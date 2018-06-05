@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @posts = Post.where('user_id in (?)', current_user.friend_ids) |
              Post.where('user_id = ?', current_user.id)
-    @posts.sort do |a, b|
+    @posts.sort! do |a, b|
         a.created_at <=> b.created_at
     end
     @comment = Comment.new
