@@ -21,8 +21,11 @@
     <%= f.submit "Post" %>
   <% end %>
 
+
   <% if flash[:post_success] %>
-    <div><%= flash[:post_success] %></div>
+    <div class="flash post-success"><%= flash[:post_success] %></div>
+  <% elsif flash[:post_failure] %>
+    <div class="flash post-failure"><%= flash[:post_failure] %></div>
   <% end %>
 </div>
 

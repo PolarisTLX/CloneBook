@@ -3,15 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :github]
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
   # has_many :profiles
-  has_many :posts
-  has_many :comments
-  has_many :likes
-  has_many :sent_requests, foreign_key: :requester_id, class_name: 'Request'
-  has_many :received_requests, foreign_key: :requestee_id, class_name: 'Request'
-  has_many :requestees, through: :sent_requests
-  has_many :requesters, through: :received_requests
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :sent_requests, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
+  has_many :received_requests, foreign_key: :requestee_id, class_name: 'Request', dependent: :destroy
+  has_many :requestees, through: :sent_requests, dependent: :destroy
+  has_many :requesters, through: :received_requests, dependent: :destroy
 
   after_create :make_profile
 

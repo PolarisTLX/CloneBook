@@ -17,7 +17,8 @@ class PostsController < ApplicationController
       flash[:post_success] = 'Post successful!'
       redirect_to root_url
     else
-      render 'index'
+      flash[:post_failure] = 'Post did not save - text content required.'
+      redirect_to root_url
     end
   end
 

@@ -418,6 +418,15 @@ input[type=submit] {
   transform: translateY(2px);
 }
 
+.flash {
+  padding-top: 6px;
+  text-align: center;
+}
+
+.post-failure {
+  color: darkred;
+}
+
 .post-header {
   position: relative;
 }
@@ -444,7 +453,9 @@ input[type=submit] {
 
 .post-content {
   font-size: 14px;
+  line-height: 2;
   padding-left: 5px;
+  padding-right: 5px;
 }
 .like-comment-buttons {
   padding: 3px 0px;
