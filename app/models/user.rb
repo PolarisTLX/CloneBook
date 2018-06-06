@@ -13,20 +13,19 @@ class User < ApplicationRecord
   has_many :requestees, through: :sent_requests, dependent: :destroy
   has_many :requesters, through: :received_requests, dependent: :destroy
 
+
   after_create :make_profile
 
 
   def friends
-     @friends = self.requesters.where('requests.accepted = ?', 1) |
-                self.requestees.where('requests.accepted = ?', 1)
-     @friends.sort do |a, b|
-        a.created_at <=> b.created_at
-     end
+     @friends = User.where('id in (?)', friend_ids)
   end
 
   def friend_ids
-    @friend_ids = self.requesters.where('requests.accepted = ?', 1).select(:id) |
-               self.requestees.where('requests.accepted = ?', 1).select(:id)
+    query = "SELECT DISTINCT f1.requestee_id AS id FROM requests as f1 JOIN requests as f2
+            ON f1.requester_id = f2.requestee_id AND f1.requestee_id = f2.requester_id
+            WHERE f1.requester_id = #{self.id}"
+    @friend_ids = User.find_by_sql(query)
   end
 
   def self.new_with_session(params, session)

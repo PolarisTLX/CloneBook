@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     @post = Post.new
@@ -23,32 +22,34 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    post
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
+    if post.update_attributes(post_params)
       flash[:success] = "Post updated!"
-      redirect_to @post
+      redirect_to post
     else
       render 'edit'
     end
   end
 
   def show
-    @post = Post.find(params[:id])
+    post
     @comment = Comment.new
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.delete
+    post.delete
     flash[:success] = "Post successfully deleted."
     redirect_to root_url
   end
 
   private
+
+  def post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:content, :image)

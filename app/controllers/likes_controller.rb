@@ -11,20 +11,6 @@ class LikesController < ApplicationController
     end
   end
 
-  # def edit
-  #   @like = Like.find(params[:id])
-  # end
-  #
-  # def update
-  #   @like = Like.find(params[:id])
-  #   if @comment.update_attributes(comment_params)
-  #     flash[:success] = "Comment updated!"
-  #     redirect_to Post.find(@like.post_id)
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-
   def destroy
     @like = Like.find(params[:id])
     @like.delete

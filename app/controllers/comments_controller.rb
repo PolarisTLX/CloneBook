@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
@@ -11,26 +12,29 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    comment
   end
 
   def update
-    @comment = Comment.find(params[:id])
-    if @comment.update_attributes(comment_params)
+    if comment.update_attributes(comment_params)
       flash[:success] = "Comment updated!"
-      redirect_to Post.find(@comment.post_id)
+      redirect_to Post.find(comment.post_id)
     else
       render 'edit'
     end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.delete
+    comment.delete
     flash[:success] = "Comment successfully deleted."
     redirect_to root_url
   end
+
   private
+
+  def comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content, :post_id)
