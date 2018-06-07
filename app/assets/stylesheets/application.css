@@ -124,12 +124,12 @@ input[type=submit] {
 }
 
 
-.posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .requests-index, .users-show, .registrations-edit{
+.posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .users-show, .registrations-edit{
   grid-area: 2 / 2 / 3 / 3;
   margin-top: 20px;
 }
 
-.users-index {
+.users-index, .requests-index {
   grid-area: 2 / 2 / 3 / 4;
   margin-top: 20px;
   background-color: white;
@@ -213,6 +213,14 @@ input[type=submit] {
   /* transform: translateY(25px); */
   /* margin-left: 225px; */
 }
+.accept-color {
+  /* width: 51%; */
+  padding: 6px 29px;
+  background-color: rgb(66,103,178);
+  color: white;
+}
+
+
 .edit-your-profile-button {
   position: absolute;
   bottom: 50px;
@@ -349,7 +357,7 @@ input[type=submit] {
   right: 19px;
 }
 
-.users-index h1 {
+.users-index h1, .requests-index h1 {
   margin-left: 18px;
 }
 
