@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    @posts = @profile.user.posts
+    @posts = @profile.user.posts.page(params[:page]).per(5)
     @comment = Comment.new
   end
 

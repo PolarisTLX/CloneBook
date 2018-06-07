@@ -278,6 +278,7 @@ input[type=submit] {
   border: 1px solid lightgrey;
   margin-left: 25px;
   margin-top: 212px;
+  margin-bottom: 50px;
   border-radius: 3px;
 }
 .friends {
@@ -700,4 +701,26 @@ input[type=submit] {
 
 .external-login .regist-header {
   margin-bottom: 20px;
+}
+
+.previous-page, .next-page {
+  color: rgb(66, 103,178) !important;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+.previous-page {
+  float: left;
+  margin-left: 10px;
+}
+.next-page {
+  float: right;
+  margin-right: 10px;
+}
+
+.users-next-page-div {
+  grid-area: 3 / 2 / 4 / 4;
+}
+
+.user-page {
+  margin-top: 20px;
 }
