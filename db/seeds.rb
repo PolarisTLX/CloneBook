@@ -58,3 +58,20 @@ users = User.all
 
   end
 end
+
+
+# Including images in SEED file
+
+# image_path = "#{Rails.root}/path/to/image_file.extension"
+# image_file = File.new(image_path)
+#
+# Image.create(
+#   :id => 52,
+#   :product_id => 52,
+#   :asset => ActionDispatch::Http::UploadedFile.new(
+#     :filename => File.basename(image_file),
+#     :tempfile => image_file,
+#     # detect the image's mime type with MIME if you can't provide it yourself.
+#     :type => MIME::Types.type_for(image_path).first.content_type
+#   )
+# )

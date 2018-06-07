@@ -53,7 +53,19 @@ class User < ApplicationRecord
 
   def make_profile
     # self.create_profile(avatar_file_name: self.image)
-    self.create_profile
+
+    # image_path = "#{Rails.root}/path/to/image_file.extension"
+    image_path = "#{Rails.root}/app/assets/images/missing.png"
+    image_file = File.new(image_path)
+
+
+    self.create_profile(:avatar => ActionDispatch::Http::UploadedFile.new(
+      :filename => File.basename(image_file),
+      :tempfile => image_file,
+      # detect the image's mime type with MIME if you can't provide it yourself.
+      :type => MIME::Types.type_for(image_path).first.content_type
+      )
+    )
   end
 
 

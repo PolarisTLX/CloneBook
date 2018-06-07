@@ -44,7 +44,7 @@
 }
 
 .navbar ul {
-  transform: translateY(-13px);
+  transform: translateY(-10px);
 }
 .navbar li {
   display: inline;
@@ -373,8 +373,8 @@ input[type=submit] {
   height: 50px;
   display: inline;
   border-radius: 50%;
-  vertical-align: top;
   margin-left: 9px;
+  transform: translateY(-15px);
 }
 
 .post, .new-post {
