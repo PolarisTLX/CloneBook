@@ -18,6 +18,7 @@ gem 'font_awesome5_rails'
 
 gem 'devise'
 
+gem 'kaminari'
 
 # gem 'omniauth'
 # gem 'omniauth-twitter'

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.friend_ids,
-                        current_user.id).order(:created_at)
+                        current_user.id).order(:created_at).page(params[:page]).per(50)
     @comment = Comment.new
   end
 
