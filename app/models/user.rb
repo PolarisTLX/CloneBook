@@ -49,12 +49,9 @@ class User < ApplicationRecord
     end
   end
 
-  private
-
   def make_profile
     # self.create_profile(avatar_file_name: self.image)
 
-    # image_path = "#{Rails.root}/path/to/image_file.extension"
     image_path = "#{Rails.root}/app/assets/images/missing.png"
     image_file = File.new(image_path)
 
