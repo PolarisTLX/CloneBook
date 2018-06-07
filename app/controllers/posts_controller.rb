@@ -3,11 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.where('user_id in (?)', current_user.friend_ids) |
-             Post.where('user_id = ?', current_user.id)
-    @posts.sort! do |a, b|
-        a.created_at <=> b.created_at
-    end
+    @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.friend_ids,
+                        current_user.id).order(:created_at)
     @comment = Comment.new
   end
 

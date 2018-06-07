@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   # has_many :profiles
   has_many :posts, dependent: :destroy
+  has_many :friends_posts, -> { where 'user_id IN (?) OR user_id = ?', current_user.friend_ids, current_user.id}, class_name: 'Post'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :sent_requests, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
