@@ -12,7 +12,10 @@ gem 'pg'
 
 # paperclip to attach files and images
 gem 'paperclip'
+# AWS S3 for image storage
+gem 'aws-sdk',   '~> 2.6'
 
+gem 'figaro'
 # gem "font-awesome-rails"
 gem 'font_awesome5_rails'
 
