@@ -24,25 +24,22 @@ end
 
 # 5 posts for each user:
 3.times do
-  # content = Faker::Lorem.sentence(5)
   users.each { |user| user.posts.create(content: Faker::Lorem.sentence(5)) }
 end
 
-# each post have random number of comments (between 0 - 4)
+# each post have random number of comments (0 - 4)
 posts = Post.all
 posts.each do |post|
   rand(0..4).times do
-    # content = Faker::Lorem.sentences
     # assign random user id from 1-5 (there is no 0)
     post.comments.create(user_id: rand(1..5), content: Faker::Lorem.sentence)
   end
 end
 
+# each post have random number of likes (0 - 4)
 posts = Post.all
 posts.each do |post|
   rand(0..4).times do
-    # content = Faker::Lorem.sentences
-    # assign random user id from 1-5 (there is no 0)
     post.likes.create(user_id: rand(1..5))
   end
 end
@@ -63,20 +60,3 @@ users = User.all
 
   end
 end
-
-
-# Including images in SEED file
-
-# image_path = "#{Rails.root}/path/to/image_file.extension"
-# image_file = File.new(image_path)
-#
-# Image.create(
-#   :id => 52,
-#   :product_id => 52,
-#   :asset => ActionDispatch::Http::UploadedFile.new(
-#     :filename => File.basename(image_file),
-#     :tempfile => image_file,
-#     # detect the image's mime type with MIME if you can't provide it yourself.
-#     :type => MIME::Types.type_for(image_path).first.content_type
-#   )
-# )
