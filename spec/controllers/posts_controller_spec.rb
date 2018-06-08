@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
 
   before(:all) do
-    Rails.application.load_seed
+    Rails.application.load_seed if User.count == 0
   end
 
   let(:user) { User.first }
@@ -59,7 +59,7 @@ RSpec.describe PostsController, type: :controller do
     describe 'POST #update' do
 
       describe 'when edit post info is valid' do
-        it 'edits the post' do
+        it 'updates the post' do
           patch :update, params: { id: post_id, post: { content: 'Editing my first post!'} }
           expect(user.posts.first.content).to eq 'Editing my first post!'
           expect(response).to redirect_to(user.posts.first)
