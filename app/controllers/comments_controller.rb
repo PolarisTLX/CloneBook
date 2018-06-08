@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.delete
+    @comment.destroy
     flash[:success] = "Comment successfully deleted."
     redirect_to root_url
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
 
-  before do
+  before(:all) do
     Rails.application.load_seed
   end
 
@@ -11,13 +11,20 @@ RSpec.describe PostsController, type: :controller do
 
   context 'when user is logged in' do
 
-  before do
-    sign_in(user)
-  end
+    before do
+      sign_in(user)
+    end
 
     describe "GET #index" do
-      it 'successfully shows the timeline index page' do
+      it 'shows the timeline index page' do
           get :index
+          expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "GET #show" do
+      it 'shows the post page' do
+          get :show, params: { id: post_id }
           expect(response).to have_http_status(:success)
       end
     end
@@ -42,13 +49,12 @@ RSpec.describe PostsController, type: :controller do
 
     describe 'GET #edit' do
 
-      it 'successfully brings user to edit post page' do
+      it 'shows the edit post page' do
           get :edit, params: { id: post_id }
           expect(response).to have_http_status(:success)
       end
 
     end
-
 
     describe 'POST #update' do
 
@@ -69,6 +75,12 @@ RSpec.describe PostsController, type: :controller do
 
     end
 
+    describe 'DELETE #destroy' do
+      it 'deletes the post' do
+        expect { delete :destroy, params: { id: post_id } }.to change{Post.count}.by(-1)
+        expect(response).to redirect_to(root_url)
+      end
+    end
   end
 
   context 'when user is not logged in' do
@@ -80,14 +92,42 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
+    describe "GET #show" do
+      it 'redirects to login page' do
+          get :show, params: { id: post_id }
+          expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
     describe 'POST #create' do
-      it 'post is not created and user is redirected to login page' do
+      it 'does not create post and redirects to login' do
           expect{post :create, params: { post: { content: 'I am trying to make a post!'} }}.to change{Post.count}.by(0)
           expect(response).to redirect_to(new_user_session_path)
       end
     end
 
-  end
+    describe 'GET #edit' do
+      it 'redirects to login page' do
+          get :edit, params: { id: post_id }
+          expect(response).to redirect_to(new_user_session_path)
+      end
+    end
 
+    describe 'POST #update' do
+      it 'does not edit the post and redirects to login' do
+        patch :update, params: { id: post_id, post: { content: 'Editing my first post!'} }
+        expect(user.posts.first.content).to_not eq 'Editing my first post!'
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      it 'does NOT delete the post and redirects to login' do
+        expect { delete :destroy, params: { id: post_id } }.to change{Post.count}.by(0)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+  end
 
 end

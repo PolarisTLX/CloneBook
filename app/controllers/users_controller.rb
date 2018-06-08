@@ -7,6 +7,4 @@ class UsersController < ApplicationController
     @users = User.where('id != ?' , current_user.id).page(params[:page]).per(12)
   end
 
-  def show
-  end
 end
