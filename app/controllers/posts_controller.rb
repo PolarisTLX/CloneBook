@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def update
     if post.update_attributes(post_params)
       flash[:success] = "Post updated!"
-      redirect_to @post
+      redirect_to post
     else
       render 'edit'
     end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   private
 
   def post
-    @post = Post.find(params[:id])
+    @post ||= Post.find(params[:id])
   end
 
   def post_params

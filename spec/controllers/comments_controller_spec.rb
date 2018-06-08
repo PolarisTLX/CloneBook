@@ -31,7 +31,7 @@ RSpec.describe CommentsController, type: :controller do
         end
     end
 
-    describe 'POST #update' do
+    describe 'PATCH #update' do
         it 'updates the comment' do
           patch :update, params: { id: comment_id, comment: { content: 'Editing my first comment!'} }
           expect(user.comments.first.content).to eq 'Editing my first comment!'
@@ -63,7 +63,7 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
 
-    describe 'POST #update' do
+    describe 'PATCH #update' do
       it 'does not edit the comment and redirects to login' do
         patch :update, params: { id: comment_id, comment: { content: 'Editing my first comment!'} }
         expect(user.comments.first.content).to_not eq 'Editing my first comment!'

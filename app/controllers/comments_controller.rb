@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   def update
     if comment.update_attributes(comment_params)
       flash[:success] = "Comment updated!"
-      redirect_to Post.find(@comment.post_id)
+      redirect_to Post.find(comment.post_id)
     else
       render 'edit'
     end
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   private
 
   def comment
-      @comment = Comment.find(params[:id])
+      @comment ||= Comment.find(params[:id])
   end
   def comment_params
     params.require(:comment).permit(:content, :post_id)

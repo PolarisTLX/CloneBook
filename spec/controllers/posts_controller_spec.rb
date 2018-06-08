@@ -56,7 +56,7 @@ RSpec.describe PostsController, type: :controller do
 
     end
 
-    describe 'POST #update' do
+    describe 'PATCH #update' do
 
       describe 'when edit post info is valid' do
         it 'updates the post' do
@@ -113,7 +113,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe 'POST #update' do
+    describe 'PATCH #update' do
       it 'does not edit the post and redirects to login' do
         patch :update, params: { id: post_id, post: { content: 'Editing my first post!'} }
         expect(user.posts.first.content).to_not eq 'Editing my first post!'
