@@ -7,7 +7,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   let(:user) { User.first }
-  let(:post) { user.posts.first }
+  let(:post_id) { user.posts.first.id }
   let(:comment_id) {user.comments.first.id}
 
   context 'when user is logged in' do
@@ -18,9 +18,9 @@ RSpec.describe CommentsController, type: :controller do
 
     describe 'POST #create' do
         it 'creates the new comment' do
-          expect{post :create, params: { comment: { content: 'This is my first comment!', post_id: post.id } }}.to change{user.comments.count}.by(1)
-          expect(user.comments.last.content).to eq 'This is my first comment!'
-          expect(response).to redirect_to(root_url)
+          expect{post :create, params: { comment: { content: 'This is my first comment!', post_id: post_id } }}.to change{Comment.count}.by(1)
+          expect(Comment.last.content).to eq 'This is my first comment!'
+          expect(response).to redirect_to(Post.find(post_id))
         end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe CommentsController, type: :controller do
 
     describe 'POST #create' do
       it 'does not create comment and redirects to login' do
-          expect{post :create, params: { comment: { content: 'I am trying to make a comment!', post_id: post.id } }}.to change{Comment.count}.by(0)
+          expect{post :create, params: { comment: { content: 'I am trying to make a comment!', post_id: post_id } }}.to change{Comment.count}.by(0)
           expect(response).to redirect_to(new_user_session_path)
       end
     end
