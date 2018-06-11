@@ -38,7 +38,7 @@ RSpec.describe LikesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      it 'deletes the like' do
+      it 'deletes the like to unlike post' do
         expect { delete :destroy, params: { id: like.id } }.to change{Like.count}.by(-1)
         expect(response).to redirect_to(root_url)
       end

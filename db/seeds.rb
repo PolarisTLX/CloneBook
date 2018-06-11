@@ -18,9 +18,6 @@ users = User.create([
 
 users = User.all
 
-users.each do |user|
-  user.make_profile
-end
 
 # 5 posts for each user:
 3.times do
