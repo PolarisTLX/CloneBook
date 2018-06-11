@@ -10,9 +10,8 @@ class RequestsController < ApplicationController
   end
 
   def update
-    # @request = current_user.received_requests.find_by(requester_id: params[:request][:requester_id])
     @friend_request = Request.find(params[:id])
-    @friend_request.update_columns(accepted: 1)
+    @friend_request.accept
     flash[:success] = 'Friend Request Accepted!'
     redirect_to User.find(params[:request][:requester_id]).profile
   end

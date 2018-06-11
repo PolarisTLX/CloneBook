@@ -52,11 +52,11 @@ users = User.all
 
     # requestee can't be the same as current user
     requestee_id_num = rand(1..8)
-    while requestee_id_num == user.id || user.requestees.include?(requestee_id_num) do
+    while requestee_id_num == user.id || user.requestees.include?(User.find(requestee_id_num)) do
       requestee_id_num = rand(1..8)
     end
 
     user.sent_requests.create(requestee_id: requestee_id_num, accepted: 1)
-
+    User.find(requestee_id_num).sent_requests.create(requestee_id: user.id, accepted: 1)
   end
 end

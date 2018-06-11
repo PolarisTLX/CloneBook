@@ -9,26 +9,16 @@ class User < ApplicationRecord
   has_many :friends_posts, -> { where 'user_id IN (?) OR user_id = ?', current_user.friend_ids, current_user.id}, class_name: 'Post'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  has_many :accepted_sent_requests, -> { where accepted: 1 }, foreign_key: :requester_id, class_name: 'Request'
+  has_many :friends, through: :accepted_sent_requests, source: :requestee
+
   has_many :sent_requests, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
   has_many :received_requests, foreign_key: :requestee_id, class_name: 'Request', dependent: :destroy
   has_many :requestees, through: :sent_requests, dependent: :destroy
   has_many :requesters, through: :received_requests, dependent: :destroy
 
   after_create :make_profile
-
-
-  def friends
-     @friends = self.requesters.where('requests.accepted = ?', 1) |
-                self.requestees.where('requests.accepted = ?', 1)
-     @friends.sort do |a, b|
-        a.created_at <=> b.created_at
-     end
-  end
-
-  def friend_ids
-    @friend_ids = self.requesters.where('requests.accepted = ?', 1).select(:id) |
-               self.requestees.where('requests.accepted = ?', 1).select(:id)
-  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
