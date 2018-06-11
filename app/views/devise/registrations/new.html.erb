@@ -1,0 +1,56 @@
+<div class="entry-navbar navbar">
+    <ul style="list-style: none;">
+        <li class="logo">
+          clonebook
+        </li>
+        <li class="link-login">
+          <%= link_to 'Log In', new_user_session_path %>
+        </li>
+    </ul>
+</div>
+
+<div class="registrations-new">
+<h1 class="regist-header">Create a New Account</h1>
+<p class="regist-free">It's free and always will be.</p>
+<br/>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field firstname-regist">
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "First", placeholder: 'First name' %>
+  </div>
+
+  <div class="field lastname-regist">
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "Last", placeholder: 'Last name' %>
+  </div>
+
+  <div class="field email-regist">
+    <%= f.email_field :email, autocomplete: "email", placeholder: 'Email' %>
+  </div>
+
+  <div class="field password-regist">
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password ( #{@minimum_password_length} characters minimum )" %>
+  </div>
+
+  <div class="field confirm-regist">
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm password' %>
+  </div>
+
+  <p class="conditions"> By clicking Sign Up, you agree to our Terms, Data Policy and Cookies Policy. You may receive SMS Notifications from us and can opt out any time. </p>
+
+  <div class="actions registration-button">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+</div>
+
+<div class="external-login">
+  <h1 class="regist-header">External Logins</h1>
+  <p class="regist-free">Click to sign in with one of the following: </p>
+  <div class="signin-links">
+    <%= link_to fa_icon('facebook-square', type: :brand, color: 'rgb(66, 103, 178)'), user_facebook_omniauth_authorize_path, class: "facebook-signin" %>
+    <%= link_to fa_icon('github-square', type: :brand, color: 'black'), user_github_omniauth_authorize_path, class: "github-signin" %>
+  </div>
+</div>

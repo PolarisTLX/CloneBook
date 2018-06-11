@@ -1,4 +1,5 @@
 require_relative 'boot'
+require 'kaminari'
 
 require 'rails/all'
 

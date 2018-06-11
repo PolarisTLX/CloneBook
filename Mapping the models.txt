@@ -15,15 +15,17 @@ IMPLEMENT LATER :
     #-Users can attend multiple Events
     #-Events have have many Users attending
 
+    #-Forgot password link
+    #-Users can reset their password via email
 
 
 MODELS:
 
 MODEL - Users:
--name
+-first_name
+-last_name
 -email
 -password_digest
--profile_photo
 
 has_many posts
 has_many likes
@@ -35,6 +37,15 @@ has_many sent_requests       (foreign key: )
 #-has_many invites to others' Events
 
 
+MODEL - Profile:
+-belongs_to User
+-avatar-photo
+-birthday
+-Location
+-gender
+-bio/about-me section
+
+
 MODEL - Posts:
 -content
 -User_id
@@ -42,6 +53,7 @@ MODEL - Posts:
 -belongs_to User
 -has_many comments
 -has_many likes
+-has_attached_file (image)
 
 
 MODEL - Likes:

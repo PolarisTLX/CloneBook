@@ -10,7 +10,21 @@ gem 'rails', '~> 5.2.0'
 # Use postgres as the database for Active Record
 gem 'pg'
 
+# paperclip to attach files and images
+gem 'paperclip'
+
+# gem "font-awesome-rails"
+gem 'font_awesome5_rails'
+
 gem 'devise'
+
+gem 'kaminari'
+
+# gem 'omniauth'
+# gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -31,6 +45,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use Faker to create database seeds
+gem 'faker'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -44,6 +61,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

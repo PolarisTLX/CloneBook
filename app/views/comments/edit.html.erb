@@ -1,0 +1,41 @@
+<div class="comments-edit">
+<h2> Edit your comment on: </h2>
+<div class="post">
+<p class="post-header">
+  <span>
+    <%= link_to(@comment.post.user.profile) do %>
+      <% if !@comment.post.user.profile.avatar.exists? && @comment.post.user.image %>
+        <%= image_tag @comment.post.user.image, class: 'tac-image', size: '20x20' %>
+      <% else %>
+        <%= image_tag @comment.post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
+      <% end %>
+    <% end %>
+
+    <%= link_to "#{@comment.post.user.first_name}", @comment.post.user.profile, class: "user-name" %>
+  </span>
+
+  <%= link_to distance_of_time_in_words(Time.now, @comment.post.created_at)+ ' ago', @comment.post, class: 'timestamp' %>
+</p>
+
+<p class="post-content">
+  <%= @comment.post.content %><br/>
+  <% if @comment.post.image.exists? %>
+    <%= image_tag @comment.post.image.url(:medium) %>
+  <% end %>
+</p>
+
+<%= form_for(@comment) do |c| %>
+  <%= link_to(current_user.profile) do %>
+    <% if !current_user.profile.avatar.exists? && current_user.image %>
+      <%= image_tag current_user.image, class: 'tac-image new-comment-image', size: '20x20' %>
+    <% else %>
+      <%= image_tag current_user.profile.avatar.url(:tac), class: 'tac-image new-comment-image', size: '20x20' %>
+    <% end %>
+  <% end %>
+
+  <%= c.text_area :content, class: "comment-field", placeholder: "Write a comment...", rows: "1" %>
+  <%= c.submit "Save changes" %>
+  <%= c.hidden_field :post_id, value: @comment.post.id %>
+<% end %>
+</div>
+</div>

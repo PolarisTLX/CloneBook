@@ -1,0 +1,67 @@
+<!-- <div class="profiles-show"> -->
+
+<div class="cover-background">
+  <% if @profile.cover.exists? %>
+    <%= image_tag @profile.cover.url(:large), class: "cover-image" %>
+  <% end %>
+</div>
+
+<div class="user-image">
+  <% if !@profile.avatar.exists? && @profile.user.image %>
+    <%= image_tag @profile.user.image %>
+  <% else %>
+    <%= image_tag @profile.avatar.url(:medium) %>
+  <% end %>
+</div>
+
+
+<div class="cover-content">
+
+
+  <p class ="cover-name">
+    <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+  </p>
+
+</div>
+
+<div class="user-info-left-background profile-edit"></div>
+
+<div class="user-info-left profile-edit">
+
+  <%= form_for @profile do |f| %>
+
+
+      <%= f.label :avatar, fa_icon('image', type: :solid, text: "Change Avatar", color: 'rgb(66, 103, 178)'), class: 'photo-label avatar-label' %>
+      <%= f.file_field :avatar, class: 'post-photo profile-photo-select' %>
+
+      <%= f.label :cover, fa_icon('image', type: :solid, text: "Change Cover Photo", color: 'rgb(66, 103, 178)'), class: 'photo-label cover-photo-label' %>
+      <%= f.file_field :cover, class: 'post-photo cover-photo-select' %>
+      <br/>
+
+      <div class="edit-profile-fields">
+        <%= f.label :birthday, "Birthday" %>
+        <%= f.date_field :birthday, autocomplete: "off" %>
+        <br/>
+
+        <%= f.label :gender, "Gender" %>
+        <%= f.text_field :gender, autocomplete: "off" %>
+        <br/>
+
+        <%= f.label :location, "City" %>
+        <%= f.text_field :location %>
+        <br/>
+
+        <%= f.label :bio, "About Me" %>
+        <%= f.text_area :bio %>
+        <br/>
+      </div>
+
+        <%= f.submit "Save Your Profile", class: "profile-edit-submit-button" %>
+        <br/>
+
+  <% end %>
+
+</div>
+
+
+<!-- </div> -->

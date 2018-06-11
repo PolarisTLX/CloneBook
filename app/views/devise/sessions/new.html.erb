@@ -1,0 +1,45 @@
+<div class="entry-navbar navbar">
+    <ul style="list-style: none;">
+      <li class="logo">
+        clonebook
+      </li>
+      <li class="link-signup">
+        <%= link_to 'Sign Up', new_user_registration_path %>
+      </li>
+    </ul>
+</div>
+
+
+<div class="sessions-new">
+<h1 class="regist-header">Log in</h1>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field email-regist">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+  </div>
+
+  <div class="field password-regist">
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field remember-login">
+      <%= f.check_box :remember_me, checked: true, hidden: true %>
+    </div>
+  <% end -%>
+
+  <div class="actions registration-button">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+</div>
+
+<div class="external-login">
+  <h1 class="regist-header">External Logins</h1>
+  <p class="regist-free">Click to sign in with one of the following: </p>
+  <div class="signin-links">
+    <%= link_to fa_icon('facebook-square', type: :brand, color: 'rgb(66, 103, 178)'), user_facebook_omniauth_authorize_path, class: "facebook-signin" %>
+    <%= link_to fa_icon('github-square', type: :brand, color: 'black'), user_github_omniauth_authorize_path, class: "github-signin" %>
+  </div>
+</div>

@@ -1,0 +1,215 @@
+<!-- <div class="profiles-show"> -->
+
+<div class="cover-background">
+  <% if @profile.cover.exists? %>
+    <%= image_tag @profile.cover.url(:large), class: "cover-image" %>
+  <% end %>
+</div>
+
+<div class="user-image">
+  <% if !@profile.avatar.exists? && @profile.user.image %>
+    <%= image_tag @profile.user.image %>
+  <% else %>
+    <%= image_tag @profile.avatar.url(:medium) %>
+  <% end %>
+</div>
+
+
+<div class="cover-content">
+
+
+  <p class ="cover-name">
+    <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+  </p>
+
+  <% unless current_user == @profile.user %>
+    <% if current_user.requesters.where('requests.accepted = ?', 0).include?(@profile.user) %>
+      <%= link_to "Accept Friend Request", request_path(id: current_user.received_requests.find_by(requester_id: @profile.user.id).id, request: { requester_id: @profile.user.id }), method: :put, class: "add-friend-button" %>
+    <% elsif current_user.requesters.include?(@profile.user) %>
+    <% elsif !current_user.requestees.include?(@profile.user) %>
+      <%= link_to fa_icon('user-plus', type: :solid, style: 'color:rgb(90, 90, 90)', text: "Add Friend"), requests_path(request: { requestee_id: @profile.user.id }), method: :post, class: "add-friend-button" %>
+    <% end %>
+  <% end %>
+
+  <% if @profile.user == current_user %>
+    <%= link_to fa_icon('pencil-alt', type: :solid, style: 'color:rgb(90, 90, 90)', text: "Edit Your Profile"), edit_profile_path(current_user.profile), class: "edit-your-profile-button"%>
+  <% end %>
+
+</div>
+
+<div class="user-info-left-background"></div>
+
+<div class="user-info-left">
+  <p>
+    <strong>Date of Birth:</strong>
+    <%= @profile.birthday %>
+    <br/>
+
+    <strong>Gender:</strong>
+    <%= @profile.gender %>
+    <br/>
+
+    <strong>City:</strong>
+    <%= @profile.location %>
+    <br/>
+
+    <strong>About Me:</strong>
+    <%= @profile.bio %>
+  </p>
+</div>
+
+<div class="friends-background"></div>
+
+<div class="friends">
+  <% if @profile.user.friends.count > 0 %>
+    <h2><%= @profile.user.first_name %>'s friends:</h2>
+    <div class="friends-grid">
+        <% @profile.user.friends.first(4).each do |friend| %>
+          <div>
+            <%= link_to(friend.profile) do %>
+              <% if !friend.profile.avatar.exists? && friend.image %>
+                <%= image_tag friend.image, size: '100x100' %>
+              <% else %>
+                <%= image_tag friend.profile.avatar.url(:thumb), size: '100x100' %>
+              <% end %>
+            <% end %>
+
+            <p class="friend-name">
+              <%= friend.first_name %>
+            </p>
+          </div>
+        <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="user-posts">
+  <% if @posts.count > 0 %>
+    <% @posts.each do |post| %>
+      <div class="post">
+        <p class="post-header">
+          <span>
+            <%= link_to(post.user.profile) do %>
+              <% if !post.user.profile.avatar.exists? && post.user.image %>
+                <%= image_tag post.user.image, class:'tac-image', size: '20x20' %>
+              <% else %>
+                <%= image_tag post.user.profile.avatar.url(:tac), class:'tac-image', size: '20x20' %>
+              <% end %>
+            <% end %>
+
+            <%= link_to "#{post.user.first_name}", post.user.profile, class: "user-name" %>
+          </span>
+          <%= link_to distance_of_time_in_words(Time.now, post.created_at)+ ' ago', post, class: 'timestamp' %>
+          <% if current_user.id == post.user_id %>
+          <span class="edit-delete-post">
+            <%= link_to 'Edit Post', edit_post_path(post) %>
+            <%= link_to 'Delete', post, method: :delete, data: {confirm: "Are you sure?"} %>
+          </span>
+          <% end %>
+        </p>
+        <p class="post-content">
+          <%= post.content %><br/>
+          <% if post.image.exists? %>
+            <%= image_tag post.image.url(:medium) %><br/>
+          <% end %>
+        </p>
+
+        <div class="like-comment-buttons">
+          <% like = post.likes.where("user_id = ?", current_user.id) %>
+          <% if like.empty? %>
+          <%= button_to likes_path(like: {post_id: post.id} ), method: :post, class: "like-button" do %>
+            <%= fa_icon('thumbs-up', type: :regular, text: "Like") %>
+          <% end %>
+          <% else %>
+            <%= button_to like.first, method: :delete, class: "like-button unlike" do %>
+              <%= fa_icon('thumbs-up', type: :solid, text: "Like") %>
+            <% end %>
+          <% end %>
+          <button class="comment-button"><i class="far fa-comment-alt"></i> Comment</button>
+        </div>
+
+        <% if post.likes.count > 0 %>
+
+          <p class="liked-by">
+            <%= fa_icon('thumbs-up', type: :solid, style: 'color:rgb(66,103,178)') %>
+            <% case post.likes.count %>
+            <% when 1 %>
+                <% user = User.find(post.likes.first.user_id) %>
+                <strong>
+                  <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %>
+                </strong>
+            <% when 2 %>
+
+              <% post.likes.each_with_index do |like, index| %>
+                <% user = User.find(like.user_id) %>
+                <strong>
+                  <% unless index == post.likes.count - 1 %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %> and
+                  <% else %>
+                    <%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %>
+                  <% end %>
+                </strong>
+
+              <% end %>
+
+            <% else %>
+              <% user1 = User.find(post.likes.first.user_id) %>
+              <% user2 = User.find(post.likes.second.user_id) %>
+              <strong>
+                <%= link_to "#{user1.first_name} #{user1.last_name}", user1.profile, class: "user-name" %>,
+                <%= link_to "#{user2.first_name} #{user2.last_name}", user2.profile, class: "user-name" %>
+                  <%= "and " + pluralize(post.likes.count - 2, "other") %>
+              </strong>
+            <% end %>
+
+          </p>
+
+        <% end %>
+
+        <% if post.comments.count > 0 %>
+        <div class="all-comments">
+          <% post.comments.each do |comment| %>
+            <% user = User.find(comment.user_id) %>
+            <%= link_to(user.profile) do %>
+              <% if !user.profile.avatar.exists? && user.image %>
+                <%= image_tag user.image, class: 'tac-image comment-image', size: '20x20' %>
+              <% else %>
+                <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image comment-image', size: '20x20' %>
+              <% end %>
+            <% end %>
+
+            <p class="comment">
+              <span class="comment-content">
+                <strong><%= link_to "#{user.first_name} #{user.last_name}", user.profile, class: "user-name" %></strong> <%= comment.content %>
+              </span>
+              <% if current_user.id == comment.user_id %>
+                <span class="edit-delete-comment">
+                  <%= link_to 'Edit', edit_comment_path(comment) %>
+                  <%= link_to 'Delete', comment, method: :delete, data: {confirm: "Are you sure?"} %>
+                </span>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+        <% end %>
+
+        <%= form_for(@comment) do |f| %>
+          <%= link_to(current_user.profile) do %>
+            <% if !current_user.profile.avatar.exists? && current_user.image %>
+              <%= image_tag current_user.image, class: 'tac-image new-comment-image', size: '20x20' %>
+            <% else %>
+              <%= image_tag current_user.profile.avatar.url(:tac), class: 'tac-image new-comment-image', size: '20x20' %>
+            <% end %>
+          <% end %>
+
+          <%= f.text_area :content, class: "comment-field", placeholder: "Write a comment...", rows: "1"  %>
+          <%= f.hidden_field :post_id, value: post.id %>
+          <%= f.submit "Comment" %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to_previous_page @posts, 'Previous Page', class: "previous-page" %>
+    <%= link_to_next_page @posts, 'Next Page', class: "next-page" %>
+  <% end %>
+</div>
+<!-- </div> -->

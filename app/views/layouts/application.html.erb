@@ -5,11 +5,82 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag 'user-logo.png' %>
+
+    <link    href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <div class="navbar">
+        <ul style="list-style: none;">
+          <% if user_signed_in? %>
+            <li class="link-all-users">
+              <%= link_to 'All Users', users_index_path %>
+            </li>
+            <li class="navbar-tac">
+              <% if !current_user.profile.avatar.exists? && current_user.image %>
+                <%= image_tag current_user.image, class: "tac-image", size: '20x20' %>
+              <% else %>
+                <%= image_tag current_user.profile.avatar.url(:tac), class: "tac-image", size: '20x20' %>
+              <% end %>
+            </li>
+            <li class="link-user-name">
+              <%= link_to "#{current_user.first_name}", current_user.profile %>
+            </li>
+            <li class="link-home">
+              <%= link_to 'Home', root_url %>
+            </li>
+            <% if current_user.received_requests.where(accepted: 0).count > 0 %>
+                <li class="link-requests">
+                  <%= link_to "Friend Requests (#{current_user.received_requests.where(accepted: 0).count})", requests_path %>
+                </li>
+            <% end %>
+            <li class="link-edit">
+              <%= link_to 'Edit Account', edit_user_registration_path(current_user) %>
+            </li>
+            <li class="link-signout">
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            </li>
+          <% end %>
+        </ul>
+  </div>
+
+    <% flash.each do |message_type, message| %>
+      <% next if message_type[0..4] != 'alert' %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+
     <%= yield %>
+
   </body>
+
+
+
+  <script type="text/javascript">
+  // to replicate focun on each specific respective comment field when clicking on their respective above comment button:
+
+    let commentButton = document.querySelectorAll('.comment-button');
+    let commentField = document.querySelectorAll('.comment-field');
+
+    commentButton.forEach(event => event.addEventListener('click', focus_function));
+
+    function focus_function() {
+       let index = Array.from(commentButton).indexOf(this);
+       // console.log(index);
+       // if (this.style.color == 'red') {
+       //   this.style.color = 'black';
+       // } else {
+       //   this.style.color = 'red';
+       // }
+       commentField[index].focus();
+    }
+
+  </script>
+
+
 </html>
