@@ -2,14 +2,10 @@ require 'rails_helper'
 
 RSpec.describe LikesController, type: :controller do
 
-  before(:all) do
-    Rails.application.load_seed if User.count == 0
-    User.last.likes.create(post_id: 1) if User.last.likes.count == 0
-  end
-
-  let(:user) { User.last }
-  let(:other_user_post) { User.first.posts.first }
-  let(:like) { user.likes.first }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:random_user) }
+  let!(:other_user_post) { create(:post, user_id: other_user.id) }
+  let!(:like) { create(:like, user_id: user.id) }
 
   context 'when user is logged in' do
 

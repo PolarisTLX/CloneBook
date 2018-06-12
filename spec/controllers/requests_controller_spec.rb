@@ -2,13 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RequestsController, type: :controller do
 
-  before(:all) do
-    Rails.application.load_seed if User.count == 0
-  end
-
-  let(:user) { User.first }
-  let(:other_user) { User.where('id NOT IN (?)', user.friend_ids).first }
-  let(:third_user) { User.where('id NOT IN (?)', user.friend_ids).second }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:random_user) }
+  let(:third_user) { create(:random_user) }
 
   context 'when user is logged in' do
 
@@ -35,7 +31,8 @@ RSpec.describe RequestsController, type: :controller do
 
     describe 'PATCH #update' do
       it 'updates after requestee accepts the request and redirects to the requester\'s profile' do
-          third_user.sent_requests.create(requestee_id: user.id)
+          create(:request, requester_id: third_user.id, requestee_id: user.id)
+          # third_user.sent_requests.create(requestee_id: user.id)
           expect { patch :update, params: { id: user.received_requests.where('requester_id = ?', third_user.id).first.id,
                                    request: { requester_id: third_user.id, requestee_id: user.id } } }.to change{user.friends.count}.by(1)
           expect(user.friends).to include(third_user)
@@ -55,21 +52,22 @@ RSpec.describe RequestsController, type: :controller do
     end
 
     describe 'POST #create' do
-        it 'a new pending request is not created' do
-          expect { post :create, params: { request: { requester_id: user.id, requestee_id: other_user.id, accepted: 0 } }}.to change{Request.count}.by(0)
-          expect(user.requestees).to_not include(other_user)
-          expect(response).to redirect_to(new_user_session_path)
-        end
+      it 'a new pending request is not created' do
+        expect { post :create, params: { request: { requester_id: user.id, requestee_id: other_user.id, accepted: 0 } }}.to change{Request.count}.by(0)
+        expect(user.requestees).to_not include(other_user)
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
 
 
     describe 'PATCH #update' do
       it 'A friend request cannot be accepted' do
-          third_user.sent_requests.create(requestee_id: user.id)
-          expect { patch :update, params: { id: user.received_requests.where('requester_id = ?', third_user.id).first.id,
-                                   request: { requester_id: third_user.id, requestee_id: user.id } } }.to change{user.friends.count}.by(0)
-          expect(user.friends).to_not include(third_user)
-          expect(response).to redirect_to(new_user_session_path)
+        create(:request, requester_id: third_user.id, requestee_id: user.id)
+
+        expect { patch :update, params: { id: user.received_requests.where('requester_id = ?', third_user.id).first.id,
+                                 request: { requester_id: third_user.id, requestee_id: user.id } } }.to change{user.friends.count}.by(0)
+        expect(user.friends).to_not include(third_user)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
