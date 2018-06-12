@@ -6,9 +6,11 @@ FactoryBot.define do
     password 'password'
   end
 
-  # factory :random_post, class: Post do
-  #   content { Faker: :Post.content }
-  #   user_id { Faker: :Post.user_id }
-  # end
+  factory :random_user, class: User do
+    first_name { Faker::Name.first_name }
+    last_name  { Faker::Name.first_name }
+    email      { Faker::Internet.safe_email }
+    password   'password'
+  end
 
 end

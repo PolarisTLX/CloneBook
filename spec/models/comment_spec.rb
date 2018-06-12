@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 
-  before do
-    Rails.application.load_seed if User.count == 0
-  end
-
-  let(:comment) { Comment.first }
+  let(:comment) { build(:comment) }
 
   it 'is valid with valid attributes' do
     expect(comment).to be_valid

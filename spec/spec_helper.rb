@@ -35,7 +35,7 @@ RSpec.configure do |config|
     # a real object. This is generally recommended, and will default to
     # `true` in RSpec 4.
     # mocks.verify_partial_doubles = true
-    # to get devise view to work properly in testing
+    # to get devise views to work properly in testing
     mocks.verify_partial_doubles = false
   end
 

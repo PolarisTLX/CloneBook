@@ -1,11 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    Rails.application.load_seed if User.count == 0
-  end
 
-  let(:user) { User.first }
+  let(:user) { build(:user) }
 
   it "is valid with valid attributes" do
     expect(user).to be_valid
@@ -53,9 +50,8 @@ RSpec.describe User, type: :model do
 
   describe '#make_profile' do
     it 'creates a profile after a new user is created' do
-      @user = User.create(first_name: 'joe', last_name: 'schmo',
-                          email: 'joe@email.com', password:'joeschmo')
-      expect(@user.profile).to_not be nil
+      user.save
+      expect(user.profile).to_not be nil
     end
   end
 end

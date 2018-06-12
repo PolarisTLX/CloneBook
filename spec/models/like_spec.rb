@@ -1,11 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  before do
-    Rails.application.load_seed if User.count == 0
-  end
 
-  let(:like) { Like.first }
+  let(:like) { build(:like) }
 
   it 'is valid with valid attributes' do
     expect(like).to be_valid
@@ -22,7 +19,8 @@ RSpec.describe Like, type: :model do
   end
 
   it 'cannot like a post twice' do
-    @like = Like.new(post_id: like.post_id, user_id: like.user_id)
+    like.save
+    @like = build(:like)
     expect(@like).to_not be_valid
   end
 end

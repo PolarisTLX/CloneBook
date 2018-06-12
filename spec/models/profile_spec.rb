@@ -1,18 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  before do
-    Rails.application.load_seed if User.count == 0
+
+  let(:profile) { build(:profile) }
+
+  it "is valid with valid attributes" do
+    expect(profile).to be_valid
   end
 
-  let(:profile) { Profile.first }
-
-  it "is valid with content" do
-    profile.birthday = '1988-12-25'
-    profile.location = 'Indianapolis'
-    profile.gender = 'Male'
-    profile.bio = 'Some text that may or may not be true'
-    expect(profile).to be_valid
+  it "is not valid with a valid user_id" do
+    profile.user_id = 0
+    expect(profile).to_not be_valid
   end
 
   it "is not valid with a birthday in the future" do
