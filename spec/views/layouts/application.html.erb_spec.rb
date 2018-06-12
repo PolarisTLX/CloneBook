@@ -1,5 +1,4 @@
 require 'spec_helper'
-# include SessionsHelper
 
 RSpec.describe 'layouts/application.html.erb' do
 

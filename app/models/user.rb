@@ -43,19 +43,21 @@ class User < ApplicationRecord
   end
 
   def make_profile
-    # self.create_profile(avatar_file_name: self.image)
+    # This is for login with facebook or github
+    self.create_profile(avatar_file_name: self.image)
 
-    image_path = "#{Rails.root}/app/assets/images/missing.png"
-    image_file = File.new(image_path)
-
-
-    self.create_profile(:avatar => ActionDispatch::Http::UploadedFile.new(
-      :filename => File.basename(image_file),
-      :tempfile => image_file,
-      # detect the image's mime type with MIME if you can't provide it yourself.
-      :type => MIME::Types.type_for(image_path).first.content_type
-      )
-    )
+    # This is turned off temprorily to stop production of copies of missing.png during RSpec testing:
+          # image_path = "#{Rails.root}/app/assets/images/missing.png"
+          # image_file = File.new(image_path)
+          #
+          #
+          # self.create_profile(:avatar => ActionDispatch::Http::UploadedFile.new(
+          #   :filename => File.basename(image_file),
+          #   :tempfile => image_file,
+          #   # detect the image's mime type with MIME if you can't provide it yourself.
+          #   :type => MIME::Types.type_for(image_path).first.content_type
+          #   )
+          # )
   end
 
 

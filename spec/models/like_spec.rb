@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
 
-  let(:like) { build(:like) }
+  let(:user) { create(:user) }  # equivalent to User.create({})
+  let!(:user_post) { create(:post, user_id: user.id) }
+  let(:like) { build(:like, user_id: user.id, post_id: user_post.id) }
 
   it 'is valid with valid attributes' do
     expect(like).to be_valid

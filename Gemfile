@@ -19,6 +19,7 @@ gem 'font_awesome5_rails'
 gem 'devise'
 
 gem 'factory_bot_rails'
+gem 'rspec-html-matchers'
 
 gem 'kaminari'
 
