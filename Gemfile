@@ -18,6 +18,8 @@ gem 'font_awesome5_rails'
 
 gem 'devise'
 
+gem 'factory_bot_rails'
+
 gem 'kaminari'
 
 # gem 'omniauth'
