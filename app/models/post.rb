@@ -9,4 +9,9 @@ class Post < ApplicationRecord
   validates_attachment_content_type :image, content_type: ["image/jpg", "image/jpeg", "image/png"]
 
   default_scope -> { order(created_at: :desc) }
+
+  scope :friends_posts, -> (current_user) { where('user_id IN (?) OR user_id = ?',
+                                            current_user.friend_ids, current_user.id)
+                                            .order(:created_at) }
+
 end

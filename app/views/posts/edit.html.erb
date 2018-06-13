@@ -6,11 +6,7 @@
   </div>
 <%= form_for(@post, html: {multipart: true}) do |f| %>
   <%= link_to(current_user.profile) do %>
-    <% if !current_user.profile.avatar.exists? && current_user.image %>
-      <%= image_tag current_user.image, size: '100x100' %>
-    <% else %>
-      <%= image_tag current_user.profile.avatar.url(:thumb), size: '100x100' %>
-    <% end %>
+    <%= image_tag current_user.profile.profile_photo('thumb'), size: '100x100' %>
   <% end %>
 
   <%= f.text_area :content, rows: "3" %><br/>

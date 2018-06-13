@@ -7,11 +7,7 @@
 </div>
 
 <div class="user-image">
-  <% if !@profile.avatar.exists? && @profile.user.image %>
-    <%= image_tag @profile.user.image %>
-  <% else %>
-    <%= image_tag @profile.avatar.url(:medium) %>
-  <% end %>
+  <%= image_tag @profile.profile_photo('medium') %>
 </div>
 
 

@@ -23,11 +23,7 @@
               <%= link_to 'All Users', users_index_path %>
             </li>
             <li class="navbar-tac">
-              <% if !current_user.profile.avatar.exists? && current_user.image %>
-                <%= image_tag current_user.image, class: "tac-image", size: '20x20' %>
-              <% else %>
-                <%= image_tag current_user.profile.avatar.url(:tac), class: "tac-image", size: '20x20' %>
-              <% end %>
+              <%= image_tag current_user.profile.profile_photo('tac'), class: "tac-image" %>
             </li>
             <li class="link-user-name">
               <%= link_to "#{current_user.first_name}", current_user.profile %>

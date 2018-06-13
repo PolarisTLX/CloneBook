@@ -4,11 +4,7 @@
 <p class="post-header">
   <span>
     <%= link_to(@comment.post.user.profile) do %>
-      <% if !@comment.post.user.profile.avatar.exists? && @comment.post.user.image %>
-        <%= image_tag @comment.post.user.image, class: 'tac-image', size: '20x20' %>
-      <% else %>
-        <%= image_tag @comment.post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
-      <% end %>
+      <%= image_tag @comment.post.user.profile.profile_photo('tac'), class: 'tac-image' %>
     <% end %>
 
     <%= link_to "#{@comment.post.user.first_name}", @comment.post.user.profile, class: "user-name" %>
@@ -26,11 +22,7 @@
 
 <%= form_for(@comment) do |c| %>
   <%= link_to(current_user.profile) do %>
-    <% if !current_user.profile.avatar.exists? && current_user.image %>
-      <%= image_tag current_user.image, class: 'tac-image new-comment-image', size: '20x20' %>
-    <% else %>
-      <%= image_tag current_user.profile.avatar.url(:tac), class: 'tac-image new-comment-image', size: '20x20' %>
-    <% end %>
+    <%= image_tag current_user.profile.profile_photo('tac'), class: 'tac-image new-comment-image' %>
   <% end %>
 
   <%= c.text_area :content, class: "comment-field", placeholder: "Write a comment...", rows: "1" %>

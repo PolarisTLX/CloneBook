@@ -51,6 +51,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Faker to create database seeds
 gem 'faker'
 
+# Performance profiling
+gem 'rails-perftest'
+gem 'ruby-prof'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

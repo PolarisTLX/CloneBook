@@ -7,9 +7,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   has_one :profile, dependent: :destroy
-  # has_many :profiles
+
   has_many :posts, dependent: :destroy
-  has_many :friends_posts, -> { where 'user_id IN (?) OR user_id = ?', current_user.friend_ids, current_user.id}, class_name: 'Post'
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
@@ -22,6 +21,7 @@ class User < ApplicationRecord
   has_many :requesters, through: :received_requests, dependent: :destroy
 
   after_create :make_profile
+
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   def make_profile
     # This is for login with facebook or github
-    self.create_profile(avatar_file_name: self.image)
+    self.create_profile.save
 
     # This is turned off temprorily to stop production of copies of missing.png during RSpec testing:
           # image_path = "#{Rails.root}/app/assets/images/missing.png"
