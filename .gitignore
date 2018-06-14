@@ -26,6 +26,8 @@
 /public/assets
 .byebug_history
 
+/public/system/profiles/avatars
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
