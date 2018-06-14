@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :check_if_author, only: [:edit, :update, :destroy]
+  # before_action :check_if_author, only: [:edit, :update, :destroy]
 
   def index
     @post = Post.new

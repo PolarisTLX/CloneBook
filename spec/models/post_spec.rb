@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 
-  let(:post) { build(:post) }
+  let(:user) { create(:user) }
+  let(:post) { build(:post, user_id: user.id) }
 
   it "is valid with content" do
     expect(post).to be_valid

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 
-  let(:comment) { build(:comment) }
+  let(:user) { create(:user) }
+  let(:user_post) { create(:post, user_id: user.id) }
+  let(:comment) { build(:comment, user_id: user.id, post_id: user_post.id) }
 
   it 'is valid with valid attributes' do
     expect(comment).to be_valid

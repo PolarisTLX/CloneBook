@@ -4,7 +4,7 @@ RSpec.describe CommentsController, type: :controller do
 
   let(:user) { create(:user) }
   let!(:user_post) { create(:post, user_id: user.id) }
-  let!(:user_comment) { create(:comment, user_id: user.id) }
+  let!(:user_comment) { create(:comment, user_id: user.id, post_id: user_post.id) }
 
   context 'when user is logged in' do
 

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
 
-  let(:profile) { build(:profile) }
+  let(:user) { create(:user) }
+  let(:profile) { build(:profile, user_id: user.id) }
 
   it "is valid with valid attributes" do
     expect(profile).to be_valid
