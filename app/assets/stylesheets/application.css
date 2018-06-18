@@ -737,10 +737,9 @@ input[type=submit] {
   margin-top: 20px;
 }
 
+/* BEGIN STYLING FOR MOBILE SCREENS */
 
-
-
-@media screen and (max-width: 736px) and (orientation:portrait) {
+@media screen and (max-width: 736px) {
 
     body {
       display: grid;
@@ -749,6 +748,11 @@ input[type=submit] {
       grid-template-columns: 100%;
       /* grid-template-columns: 300px 450px 342px 273px; */
       grid-template-rows: 24px auto;
+    }
+
+    .entry-navbar, .navbar {
+      display: grid;
+      grid-area: 1 / 1 / 2 / 2;
     }
 
   .logo {
@@ -885,9 +889,31 @@ input[type=submit] {
     margin-bottom: 5px;
   }
 
+  textarea#post_content {
+    width: 70vw;
+    height: 15vw;
+    font-size: 14px;
+    line-height: 2;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 
+  .comment-button {
+    padding: 6px 30px;
+  }
 
+  .edit-delete-comment {
+    position: absolute;
+    right: 5px;
+    /* margin-right: 5%; */
+    font-size: 10px;
+    color: rgb(90,90,90);
+  }
 
+  .comment {
+    width: 66% !important;
+    padding: 10px 75px 5px 10px !important;
+  }
 
 
 
