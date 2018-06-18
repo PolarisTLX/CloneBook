@@ -736,3 +736,162 @@ input[type=submit] {
 .user-page {
   margin-top: 20px;
 }
+
+
+
+
+@media screen and (max-width: 736px) and (orientation:portrait) {
+
+    body {
+      display: grid;
+      /* grid-template-columns: 22% 33% 25% 20%; */
+      /* grid-template-columns: 22% 33% 25% 20%; */
+      grid-template-columns: 100%;
+      /* grid-template-columns: 300px 450px 342px 273px; */
+      grid-template-rows: 24px auto;
+    }
+
+  .logo {
+    font-size: 36px !important;
+    /* float: left; */
+    /* margin-left: -15px; */
+    margin-left: -7vw;
+    /* margin-right: 40px !important; */
+    margin-right: 20vw !important;
+  }
+
+  .navbar {
+    position: static;
+  }
+  .navbar ul {
+    margin-left: -25px;
+    text-align: center;
+  }
+  .navbar li {
+    margin-right: 5vw;
+  }
+  .link-all-users {
+    margin-right: 5vw !important;
+  }
+
+  .posts, .posts-edit, .posts-show, .profiles-edit, .comments-edit, .users-show, .registrations-edit{
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .users-index, .requests-index {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .registrations-new, .sessions-new {
+    grid-area: 2 / 1 / 3 / 2;
+    width: 97%;
+  }
+
+  .external-login {
+    grid-area: 3 / 1 / 4 / 2;
+    margin-left: 0px;
+  }
+
+
+  .cover-background {
+    grid-area: 2 / 1 / 3 / 2;
+    width: 100%;
+    height: 40vh;
+    margin-left: 0;
+  }
+
+  .user-image {
+    grid-area: 2 / 1 / 3 / 2;
+    margin-left: 0;
+    text-align: center;
+  }
+  .user-image img {
+    margin-top: 25vh;
+    width: 150px;
+    height: 150px;
+  }
+
+  .cover-content {
+    grid-area: 2 / 1 / 3 / 2;
+    width: 100%;
+    height: 55vh;
+    margin-left: 0px;
+    margin-top: 80px;
+    text-align: center;
+    background-color: white;
+    z-index: -1;
+  }
+  .cover-content p {
+    /* margin-left: 30%; */
+    margin: 42vh auto 0px auto;
+    color: black;
+    z-index: 1;
+  }
+  .edit-your-profile-button {
+    position: relative;
+    /* margin: 250px auto; */
+    padding: 6px 20px;
+    top: 15px;
+    left: 0;
+  }
+
+  .user-info-left-background {
+    grid-area: 3 / 1 / 4 / 2;
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  .user-info-left {
+    grid-area: 3 / 1 / 4 / 2;
+    width: 98%;
+    margin-left: 15px;
+  }
+  .friends-background {
+    grid-area: 4 / 1 / 5 / 2;
+    height: 300px;
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .friends {
+    grid-area: 4 / 1 / 5 / 2;
+    width: 98%;
+    margin-left: 15px;
+    margin-top: 0px;
+  }
+
+
+  .all-users {
+    grid-area: 3 / 1 / 4 / 2;
+    width: 100%;
+    margin-top: 25px;
+    padding-bottom: 18px;
+  }
+  .users-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+
+  .user-posts {
+    grid-area: 5 / 1 / 6 / 2;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .post {
+    margin-bottom: 5px;
+  }
+
+
+
+
+
+
+
+
+
+
+}
