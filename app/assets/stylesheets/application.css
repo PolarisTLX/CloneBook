@@ -804,7 +804,7 @@ input[type=submit] {
   .user-image {
     margin-left: 0;
     text-align: center;
-    margin-top: -12vh;
+    margin-top: -14vh;
     width: 150px;
     height: 150px;
   }
@@ -860,6 +860,43 @@ input[type=submit] {
     margin-top: 0px;
   }
 
+  /* PROFILE EDIT PAGE  */
+
+  .edit_profile {
+    /* position: relative; */
+  }
+
+
+  .cover-photo-label {
+    /* reset: */
+    transform: translate(-15px,0);
+    margin-left: 0;
+    position: absolute;
+    top: 10vh;
+    left: 27%;
+  }
+  .avatar-label {
+    /* reset: */
+    transform: translate(-15px,0);
+    margin-left: 0;
+    position: absolute;
+    top: 48vh;
+    left: 30%;
+  }
+  .profile-edit-submit-button {
+    transform: translate(-35px,0);
+    margin-left: 0;
+    position: absolute;
+    top: 63vh;
+    left: 27%;
+  }
+
+
+  .edit-profile-fields {
+    transform: translateY(-30px);
+  }
+
+  /* END PROFILE EDIT PAGE  */
 
   .all-users {
     grid-area: 3 / 1 / 4 / 2;

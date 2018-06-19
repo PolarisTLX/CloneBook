@@ -6,13 +6,10 @@
   <% end %>
 </div>
 
-<div class="user-image">
-  <%= image_tag @profile.profile_photo('medium') %>
-</div>
-
 
 <div class="cover-content">
 
+  <%= image_tag @profile.profile_photo('medium'), class: "user-image" %>
 
   <p class ="cover-name">
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
@@ -28,10 +25,10 @@
 
 
       <%= f.label :avatar, fa_icon('image', type: :solid, text: "Change Avatar", color: 'rgb(66, 103, 178)'), class: 'photo-label avatar-label' %>
-      <%= f.file_field :avatar, class: 'post-photo profile-photo-select' %>
+      <%= f.file_field :avatar, class: 'post-photo' %>
 
       <%= f.label :cover, fa_icon('image', type: :solid, text: "Change Cover Photo", color: 'rgb(66, 103, 178)'), class: 'photo-label cover-photo-label' %>
-      <%= f.file_field :cover, class: 'post-photo cover-photo-select' %>
+      <%= f.file_field :cover, class: 'post-photo' %>
       <br/>
 
       <div class="edit-profile-fields">
