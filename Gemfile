@@ -12,8 +12,10 @@ gem 'pg'
 
 # paperclip to attach files and images
 gem 'paperclip'
+# , :git => 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 
-# gem "font-awesome-rails"
+gem 'aws-sdk', '< 2.0'
+
 gem 'font_awesome5_rails'
 
 gem 'devise'
@@ -23,8 +25,6 @@ gem 'rspec-html-matchers'
 
 gem 'kaminari'
 
-# gem 'omniauth'
-# gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
