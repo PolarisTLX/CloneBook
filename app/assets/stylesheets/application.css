@@ -787,9 +787,43 @@ input[type=submit] {
     width: 97%;
   }
 
-  .external-login {
+  .firstname-regist input , .lastname-regist input {
+    width: 42.4%;
+  }
+  .firstname-regist input {
+    margin-right: 2px;
+  }
+  .lastname-regist input {
+    margin-left: 2px;
+  }
+  .email-regist input {
+    width: 92%;
+  }
+  .password-regist input {
+    width: 92%;
+  }
+  .confirm-regist input {
+    width: 92%;
+  }
+  .current-password-regist input {
+    width: 92%;
+  }
+
+  .alert {
     grid-area: 3 / 1 / 4 / 2;
+    margin-top: 20px;
+  }
+  #error_explanation {
+    margin-left: 5px;;
+  }
+
+  .external-login {
+    grid-area: 4 / 1 / 5 / 2;
     margin-left: 0px;
+  }
+
+  .regist-Heroku {
+    margin-bottom: 50px;
   }
 
 /* Profile Page */
@@ -900,6 +934,25 @@ input[type=submit] {
     transform: translateY(-30px);
   }
 
+  .add-friend-profile {
+    position: relative;
+    /* margin: 250px auto; */
+    padding: 6px 20px;
+    top: 15px;
+    left: 0;
+  }
+  .friends-grid {
+    text-align: center;
+    margin-left: -15px;
+  }
+  .friends-grid img {
+    width: 75%;
+    height: 75%;
+  }
+  .friends-background {
+    height: 350px;
+  }
+
   /* END PROFILE EDIT PAGE  */
 
   .all-users {
@@ -950,6 +1003,30 @@ input[type=submit] {
     width: 66% !important;
     padding: 10px 75px 5px 10px !important;
   }
+
+  /* ALL USERS INDEX */
+  .users-next-page-div {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .users-index-button {
+    text-align: center;
+    padding: 6px 8px;
+    width: 24vw;
+    right: 6px;
+    /* margin-left: 2vw; */
+    /* transform: translateX(5px); */
+    /* width: ; */
+  }
+  .users-index-user {
+    margin-left: 0;
+  }
+  .users-index-user img {
+    width: 100%;
+  }
+  .users-grid {
+    grid-gap: 3px;
+  }
+  /* END ALL USERS INDEX */
 
 
 
