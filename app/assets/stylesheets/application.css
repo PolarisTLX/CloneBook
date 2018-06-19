@@ -797,10 +797,14 @@ input[type=submit] {
   .cover-background {
     grid-area: 2 / 1 / 3 / 2;
     width: 100%;
-    height: 40vh;
+    height: 35vh;
     margin-left: 0;
   }
 
+  .cover-image {
+    width: 100%;
+    height: 35vh;
+  }
   .user-image {
     margin-left: 0;
     text-align: center;
@@ -812,9 +816,9 @@ input[type=submit] {
   .cover-content {
     grid-area: 2 / 1 / 3 / 2;
     width: 100%;
-    height: 25vh;
+    height: 30vh;
     margin-left: 0px;
-    margin-top: 40vh;
+    margin-top: 35vh;
     /* margin-bottom: 20px; */
     text-align: center;
     background-color: white;
@@ -873,22 +877,22 @@ input[type=submit] {
     margin-left: 0;
     position: absolute;
     top: 10vh;
-    left: 27%;
+    left: 30%;
   }
   .avatar-label {
     /* reset: */
     transform: translate(-15px,0);
     margin-left: 0;
     position: absolute;
-    top: 48vh;
-    left: 30%;
+    top: 46vh;
+    left: 35%;
   }
   .profile-edit-submit-button {
     transform: translate(-35px,0);
     margin-left: 0;
     position: absolute;
-    top: 63vh;
-    left: 27%;
+    top: 62vh;
+    left: 30%;
   }
 
 
