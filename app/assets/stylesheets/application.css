@@ -175,18 +175,14 @@ input[type=submit] {
 
 
 .user-image {
-  grid-area: 2 / 2 / 3 / 3;
   margin-left: 50px;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   margin-bottom: 25px;
-}
-
-.user-image img{
   width: 175px;
   height: 175px;
   border: 4px solid white;
   border-radius: 3px;
-  margin-top: 120px;
+  margin-top: 145px;
 }
 
 .cover-content {
@@ -200,7 +196,7 @@ input[type=submit] {
   color: white;
   font-size: 24px;
   margin-left: 250px;
-  margin-top: 280px;
+  margin-top: -70px;
 }
 
 .add-friend-button {
@@ -796,6 +792,7 @@ input[type=submit] {
     margin-left: 0px;
   }
 
+/* Profile Page */
 
   .cover-background {
     grid-area: 2 / 1 / 3 / 2;
@@ -805,12 +802,9 @@ input[type=submit] {
   }
 
   .user-image {
-    grid-area: 2 / 1 / 3 / 2;
     margin-left: 0;
     text-align: center;
-  }
-  .user-image img {
-    margin-top: 25vh;
+    margin-top: -12vh;
     width: 150px;
     height: 150px;
   }
@@ -818,19 +812,20 @@ input[type=submit] {
   .cover-content {
     grid-area: 2 / 1 / 3 / 2;
     width: 100%;
-    height: 55vh;
+    height: 25vh;
     margin-left: 0px;
-    margin-top: 80px;
+    margin-top: 40vh;
+    /* margin-bottom: 20px; */
     text-align: center;
     background-color: white;
-    z-index: -1;
   }
   .cover-content p {
     /* margin-left: 30%; */
-    margin: 42vh auto 0px auto;
+    margin: -3vh auto 0px auto;
     color: black;
-    z-index: 1;
+    /* z-index: 1; */
   }
+
   .edit-your-profile-button {
     position: relative;
     /* margin: 250px auto; */
@@ -841,26 +836,26 @@ input[type=submit] {
 
   .user-info-left-background {
     grid-area: 3 / 1 / 4 / 2;
-    width: 100%;
+    width: 99.5%;
     margin-left: 0px;
     margin-bottom: 10px;
   }
   .user-info-left {
     grid-area: 3 / 1 / 4 / 2;
-    width: 98%;
+    width: 95%;
     margin-left: 15px;
   }
   .friends-background {
     grid-area: 4 / 1 / 5 / 2;
     height: 300px;
-    width: 100%;
+    width: 99.5%;
     margin-left: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
   }
   .friends {
     grid-area: 4 / 1 / 5 / 2;
-    width: 98%;
+    width: 95%;
     margin-left: 15px;
     margin-top: 0px;
   }

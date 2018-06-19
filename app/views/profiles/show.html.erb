@@ -6,13 +6,10 @@
   <% end %>
 </div>
 
-<div class="user-image">
-  <%= image_tag @profile.profile_photo('medium') %>
-</div>
-
 
 <div class="cover-content">
 
+  <%= image_tag @profile.profile_photo('medium'), class: "user-image" %>
 
   <p class ="cover-name">
     <%= @profile.user.first_name %> <%= @profile.user.last_name %>
