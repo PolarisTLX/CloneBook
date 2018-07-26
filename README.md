@@ -1,8 +1,9 @@
 # README
 
-# Facebook Clone - Ruby on Rails RESTful application to practice using Devise and Omniauth
+## Check it out live on Heroku:    [clonebook-microverse.herokuapp.com](https://clonebook-microverse.herokuapp.com)
 
-Check out the live version on Heroku: https://clonebook-microverse.herokuapp.com
+## Facebook Clone - Ruby on Rails RESTful application to practice using Devise and Omniauth
+
 =======
 
 ## Getting started
