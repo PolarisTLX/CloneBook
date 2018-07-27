@@ -2,11 +2,15 @@
 
 ## Check it out live on Heroku:    [clonebook-microverse.herokuapp.com](https://clonebook-microverse.herokuapp.com)
 
-## Facebook Clone - Ruby on Rails RESTful application to practice using Devise and Omniauth
+## Facebook Clone - Fully-featured social media app built with Ruby on Rails from scratch.
+* Replicates the core functionality of Facebook: users, profiles posts, comments, friends, and likes.
+* Uses Devise and Omniauth for user registration.
+* Implements photo uploading with Paperclip.
+* Deployed on Heroku and uses AWS S3 for photo storage.
+* Tested with RSpec.
 
-=======
 
-## Getting started
+## Getting started (to run a local copy)
 
 
 * System dependencies
