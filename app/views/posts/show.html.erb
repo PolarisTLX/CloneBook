@@ -3,11 +3,7 @@
 <p class="post-header">
   <span>
     <%= link_to(@post.user.profile) do %>
-      <% if !@post.user.profile.avatar.exists? && @post.user.image %>
-        <%= image_tag @post.user.image, class: 'tac-image', size: '20x20' %>
-      <% else %>
-        <%= image_tag @post.user.profile.avatar.url(:tac), class: 'tac-image', size: '20x20' %>
-      <% end %>
+      <%= image_tag @post.user.profile.profile_photo('tac'), class: 'tac-image' %>
     <% end %>
 
     <%= link_to "#{@post.user.first_name}", @post.user.profile, class: "user-name" %>
@@ -91,11 +87,7 @@
     <% @post.comments.each do |comment| %>
       <% user = User.find(comment.user_id) %>
       <%= link_to(user.profile) do %>
-        <% if !user.profile.avatar.exists? && user.image %>
-          <%= image_tag user.image, class: 'tac-image comment-image', size: '20x20' %>
-        <% else %>
-          <%= image_tag user.profile.avatar.url(:tac), class: 'tac-image comment-image', size: '20x20' %>
-        <% end %>
+        <%= image_tag user.profile.profile_photo('tac'), class: 'tac-image comment-image' %>
       <% end %>
 
       <p class="comment">
@@ -115,11 +107,7 @@
 
   <%= form_for(@comment) do |c| %>
     <%= link_to(current_user.profile) do %>
-      <% if !current_user.profile.avatar.exists? && current_user.image %>
-        <%= image_tag current_user.image, class: 'tac-image new-comment-image', size: '20x20' %>
-      <% else %>
-        <%= image_tag current_user.profile.avatar.url(:tac), class: 'tac-image new-comment-image', size: '20x20' %>
-      <% end %>
+      <%= image_tag current_user.profile.profile_photo('tac'), class: 'tac-image new-comment-image' %>
     <% end %>
 
     <%= c.text_area :content, class: "comment-field", placeholder: "Write a comment...", rows: "1" %>

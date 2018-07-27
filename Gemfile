@@ -18,6 +18,9 @@ gem 'font_awesome5_rails'
 
 gem 'devise'
 
+gem 'factory_bot_rails'
+gem 'rspec-html-matchers'
+
 gem 'kaminari'
 
 # gem 'omniauth'
@@ -47,6 +50,10 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Faker to create database seeds
 gem 'faker'
+
+# Performance profiling
+gem 'rails-perftest'
+gem 'ruby-prof'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

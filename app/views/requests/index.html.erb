@@ -6,11 +6,7 @@
       <% @users.each do |user| %>
           <div class="users-index-user">
             <%= link_to(user.profile) do %>
-              <% if !user.profile.avatar.exists? && user.image %>
-                <%= image_tag user.image, size: '100x100' %>
-              <% else %>
-                <%= image_tag user.profile.avatar.url(:thumb), size: '100x100' %>
-              <% end %>
+              <%= image_tag user.profile.profile_photo('thumb'), size: '100x100' %>
             <% end %>
 
             <p class="friend-name">

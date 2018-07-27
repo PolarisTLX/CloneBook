@@ -69,6 +69,8 @@ a:visited {
   margin-right: 650px !important;
 }
 .tac-image {
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   transform: translateY(4px);
 }
@@ -611,6 +613,13 @@ input[type=submit] {
   margin-top: 3px;
   margin-bottom: 5px;
 }
+.regist-Heroku {
+  font-size: 20px;
+  font-weight: 100;
+  margin-left: 30px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
 
 
 .firstname-regist input {
@@ -688,6 +697,9 @@ input[type=submit] {
 
 .signin-links {
   margin-left: 80px;
+  /* LINE BELOW ADDED TO DEACTIVATE LINK SIGNIN VIA FACEBOOK / GITHUB AS THESE TO NO WORK IN HEORKU */
+  /* REMOVE LINE BELOW TO RESTORE FEATURE IN LOCAL DEMONSTRATION */
+  pointer-events: none;
 }
 
 .facebook-signin {

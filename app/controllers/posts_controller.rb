@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
 
+  # before_action :check_if_author, only: [:edit, :update, :destroy]
+
   def index
     @post = Post.new
-    @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.friend_ids,
-                        current_user.id).order(:created_at).page(params[:page]).per(5)
+    @posts = Post.friends_posts(current_user).page(params[:page]).per(5)
     @comment = Comment.new
   end
 
@@ -46,6 +47,11 @@ class PostsController < ApplicationController
 
   def post
     @post ||= Post.find(params[:id])
+  end
+
+  def check_if_author
+    @user = post.user
+    redirect_to(root_url) unless @user == current_user
   end
 
   def post_params

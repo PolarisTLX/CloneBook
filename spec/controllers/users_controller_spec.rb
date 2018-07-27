@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  before(:all) do
-    Rails.application.load_seed if User.count == 0
-  end
-
-  let(:user) { User.first }
+  let(:user) { create(:user) }
 
   context 'when user is logged in' do
 
