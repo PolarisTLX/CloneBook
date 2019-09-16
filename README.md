@@ -15,7 +15,7 @@
 
 * System dependencies
 
-Ruby version: 2.3.1
+Ruby version: 2.6.4
 Rails version: 5.2.0
 Bundler version: 1.16.1
 
@@ -53,7 +53,6 @@ Then run:
 $ rspec
 ```
 
-## Authors
+## Author
 
-* **Kyle Lemon** - [jklemon17](https://github.com/jklemon17)
-* **Paul Rail** - [PolarisTLX](https://github.com/PolarisTLX)
+* **Roger van Wyk** - [roger-vanwyk](https://github.com/roger-vanwyk)
