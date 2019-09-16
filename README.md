@@ -15,7 +15,7 @@
 
 * System dependencies
 
-Ruby version: 2.6.4
+Ruby version: 2.3.1
 Rails version: 5.2.0
 Bundler version: 1.16.1
 
